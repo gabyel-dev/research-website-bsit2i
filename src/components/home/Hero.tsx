@@ -9,25 +9,19 @@ export const Hero = () => {
   useEffect(() => {
     if (!gridRef.current || !glowRef.current) return;
 
-    const gridAnim = animate(
-      { opacity: [0.15, 0.4] },
-      {
-        easing: "inOutSine",
-        duration: 2000,
-        direction: "alternate",
-        loop: true,
-      },
-    );
+    const gridAnim = animate(gridRef.current, {
+      easing: "inOutSine",
+      duration: 2000,
+      direction: "alternate",
+      loop: true,
+    });
 
-    const glowAnim = animate(
-      { opacity: [0.3, 0.7], scale: [0.95, 1.05] },
-      {
-        easing: "inOutSine",
-        duration: 2000,
-        direction: "alternate",
-        loop: true,
-      },
-    );
+    const glowAnim = animate(glowRef.current, {
+      easing: "inOutSine",
+      duration: 2000,
+      direction: "alternate",
+      loop: true,
+    });
 
     return () => {
       gridAnim.pause();
@@ -40,14 +34,14 @@ export const Hero = () => {
       {/* Abstract Animated Backgrounds */}
       <div
         ref={gridRef}
-        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]"
       />
 
       <div
         ref={glowRef}
-        className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/20 mix-blend-screen blur-[120px]"
+        className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 mix-blend-screen blur-[120px]"
       />
-      <div className="absolute left-[20%] top-[20%] h-[400px] w-[400px] rounded-full bg-purple-600/10 mix-blend-screen blur-[100px]" />
+      <div className="absolute left-[20%] top-[20%] h-[400px] w-[400px] rounded-full bg-purple-600/20 mix-blend-screen blur-[100px]" />
       <div className="absolute right-[20%] top-[30%] h-[500px] w-[500px] rounded-full bg-indigo-500/10 mix-blend-screen blur-[120px]" />
 
       {/* Black Vignette overlay */}
@@ -59,7 +53,6 @@ export const Hero = () => {
       {/* Content */}
       <div className="relative z-10 flex max-w-4xl flex-col  md:items-center z-21 ">
         <h1 className=" text-5xl font-semibold leading-[1.1] tracking-tight text-white/70 md:text-[72px]">
-          Website{" "}
           <span className="text-blue-400 italic">Academic Research </span>
           <br />
           Compiler for <span className="text-blue-200">BSIT 2I</span> Students

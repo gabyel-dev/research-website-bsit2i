@@ -15,7 +15,7 @@ export const TopNav = () => {
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16 bg-black/50 backdrop-blur-md border-b border-white/10 md:bg-transparent md:backdrop-blur-none md:border-none">
+      <header className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16  backdrop-blur-md md:bg-transparent md:backdrop-blur-none md:border-none">
         <Link
           to="/"
           className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 z-50"
@@ -109,7 +109,7 @@ export const TopNav = () => {
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 p-6 flex flex-col gap-6 md:hidden text-center z-40">
+          <div className="absolute top-full left-0 right-0 bg-black backdrop-blur-lg border-b border-white/10 p-6 flex flex-col gap-6 md:hidden text-center z-40">
             <nav className="flex flex-col gap-4 text-sm font-medium text-white/70">
               <a
                 href="#features"
