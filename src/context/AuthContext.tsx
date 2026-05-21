@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState, useEffect } from "react";
-import axios from "axios";
+import { api } from "../services/research.service";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+/* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
 
 type AuthUser = {
   id: string;
@@ -27,18 +27,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // Check if user is already logged in
     const checkAuth = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/auth/me`, {
-          withCredentials: true,
-        });
+        const response = await api.get(`/api/auth/me`);
         setUser(response.data.user);
       } catch (error) {
         // Try to refresh session
         try {
-          const refreshResponse = await axios.post(
-            `${API_URL}/api/auth/refresh`,
-            {},
-            { withCredentials: true }
-          );
+          const refreshResponse = await api.post(`/api/auth/refresh`, {});
           setUser(refreshResponse.data.user);
         } catch (refreshError) {
           setUser(null);
@@ -55,30 +49,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // Set up auto-refresh every 4 minutes (before 5-minute expiry)
     if (!user) return;
 
-    const refreshInterval = setInterval(async () => {
-      try {
-        const response = await axios.post(
-          `${API_URL}/api/auth/refresh`,
-          {},
-          { withCredentials: true }
-        );
-        setUser(response.data.user);
-      } catch (error) {
-        console.error("Session refresh failed:", error);
-        setUser(null);
-      }
-    }, 4 * 60 * 1000); // 4 minutes
+    const refreshInterval = setInterval(
+      async () => {
+        try {
+          const response = await api.post(
+            `/api/auth/refresh`,
+            {},
+            { withCredentials: true },
+          );
+          setUser(response.data.user);
+        } catch (error) {
+          console.error("Session refresh failed:", error);
+          setUser(null);
+        }
+      },
+      4 * 60 * 1000,
+    ); // 4 minutes
 
     return () => clearInterval(refreshInterval);
   }, [user?.id]);
 
   const login = async (token: string) => {
     try {
-      const response = await axios.post(
-        `${API_URL}/api/auth/google`,
-        { token },
-        { withCredentials: true }
-      );
+      const response = await api.post(`/api/auth/google`, { token });
       setUser(response.data.user);
     } catch (error) {
       console.error("Login failed:", error);
@@ -88,14 +81,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = async () => {
     try {
-      await axios.post(`${API_URL}/api/auth/logout`, {}, { withCredentials: true });
+      await api.post(`/api/auth/logout`);
       setUser(null);
     } catch (error) {
       console.error("Logout failed:", error);
     }
   };
 
-  const value = useMemo(() => ({ user, loading, login, logout }), [user, loading]);
+  const value = useMemo(
+    () => ({ user, loading, login, logout }),
+    [user, loading],
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
