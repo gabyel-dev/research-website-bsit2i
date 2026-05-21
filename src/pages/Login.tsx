@@ -2,7 +2,6 @@ import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import { useState } from "react";
-import { TopNav } from "../components/layout/TopNav.js";
 import { TopNavLogin } from "../components/layout/TopNavLogin.js";
 
 export const Login = () => {
