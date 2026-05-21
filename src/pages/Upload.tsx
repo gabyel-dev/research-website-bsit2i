@@ -1,10 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
 import { useAuth } from "../context/AuthContext.js";
 import { TopNav } from "../components/layout/TopNav.js";
 import { Footer } from "../components/layout/Footer.js";
+import { api } from "../services/research.service.js";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+/* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
 
 export const Upload = () => {
   const { user } = useAuth();
@@ -37,7 +37,7 @@ export const Upload = () => {
         throw new Error("Please provide either a PDF file or link");
       }
 
-      await axios.post(`${API_URL}/api/researches`, formDataToSend, {
+      await api.post(`/api/researches`, formDataToSend, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
