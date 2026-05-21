@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Google Sans", sans-serif;
+  background-color: #0a0b1a;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(122, 214, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 214, 255, 0.2) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.35;
+  mask-image: radial-gradient(circle at 30% 20%, black 40%, transparent 80%);
+}
+
+.hero-glow {
+  position: absolute;
+  inset: -20% 10% auto 10%;
+  height: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(58, 160, 255, 0.35),
+    transparent 70%
+  );
+  filter: blur(40px);
+  opacity: 0.4;
+}
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 30%,
+    transparent 45%,
+    rgba(3, 6, 22, 0.75) 90%
+  );
+  pointer-events: none;
+}
