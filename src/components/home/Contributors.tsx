@@ -1,17 +1,16 @@
 const contributors = [
   {
     id: 1,
-    name: "Ariela Cruz",
-    role: "Lead Editor",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop",
-    bio: "Oversees research quality and publication standards",
+    name: "Gabriel S. Guban",
+    role: "Website Developer",
+    image: "/web_dev.png",
+    bio: "develops and maintains the research platform, ensuring a seamless user experience",
     linkedin: "#",
     github: "#",
   },
   {
     id: 2,
-    name: "Paolo Cortez",
+    name: "John Patrick Pestada",
     role: "Research Coordinator",
     image:
       "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&h=800&fit=crop",
@@ -21,7 +20,7 @@ const contributors = [
   },
   {
     id: 3,
-    name: "Rin Delgado",
+    name: "Johnmark Celmar",
     role: "UI Specialist",
     image:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=800&fit=crop",
@@ -31,7 +30,7 @@ const contributors = [
   },
   {
     id: 4,
-    name: "Jana Molina",
+    name: "Lancz Arceo",
     role: "Faculty Advisor",
     image:
       "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=800&fit=crop",

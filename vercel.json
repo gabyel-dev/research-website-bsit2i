@@ -1,31 +1,26 @@
 {
   "rewrites": [
     {
-      "source": "/auth/:path*",
-      "destination": "https://techitik-server.onrender.com/auth/:path*"
+      "source": "/health/:path*",
+      "destination": "https://techitik-server.onrender.com/health/:path*"
     },
     {
-      "source": "/room/:path*",
-      "destination": "https://techitik-server.onrender.com/room/:path*"
+      "source": "/apu/auth/:path*",
+      "destination": "https://techitik-server.onrender.com/api/auth/:path*"
     },
     {
-      "source": "/dashboard/verify/:path*",
-      "destination": "https://techitik-server.onrender.com/dashboard/verify/:path*"
+      "source": "/apu/researches/:path*",
+      "destination": "https://techitik-server.onrender.com/api/researches/:path*"
     },
 
     {
-      "source": "/quiz/:path*",
-      "destination": "https://techitik-server.onrender.com/quiz/:path*"
+      "source": "/api/users/:path*",
+      "destination": "https://techitik-server.onrender.com/api/users/:path*"
     },
 
     {
       "source": "/attempt/:path*",
       "destination": "https://techitik-server.onrender.com/attempt/:path*"
-    },
-
-    {
-      "source": "/health/:path*",
-      "destination": "https://techitik-server.onrender.com/health/:path*"
     },
 
     {
