@@ -10,7 +10,6 @@ export const Hero = () => {
     if (!gridRef.current || !glowRef.current) return;
 
     const gridAnim = animate(
-      gridRef.current,
       { opacity: [0.15, 0.4] },
       {
         easing: "inOutSine",
@@ -21,7 +20,6 @@ export const Hero = () => {
     );
 
     const glowAnim = animate(
-      glowRef.current,
       { opacity: [0.3, 0.7], scale: [0.95, 1.05] },
       {
         easing: "inOutSine",
