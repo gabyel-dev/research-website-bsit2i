@@ -163,7 +163,7 @@ export const ViewAllResearches = () => {
                     </p>
                   </div>
 
-                  <p className="text-sm text-mist/70 leading-relaxed line-clamp-4">
+                  <p className="text-sm text-mist/70 leading-relaxed line-clamp-4 text-justify">
                     {research.summary}
                   </p>
 

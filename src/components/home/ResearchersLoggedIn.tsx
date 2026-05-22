@@ -35,11 +35,29 @@ export const ResearchersLoggedIn = () => {
         id="researchers"
         className="mt-24 mx-auto w-full max-w-7xl px-6 md:px-16"
       >
-        <div className="text-center text-mist/60">Loading researchers...</div>
+        <div className="mb-10 animate-pulse">
+          <div className="h-4 w-40 rounded bg-white/10 mb-4" />
+          <div className="h-8 w-72 rounded bg-white/10 mb-3" />
+          <div className="h-4 w-52 rounded bg-white/10" />
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center animate-pulse"
+            >
+              <div className="w-20 h-20 rounded-full bg-white/10 mb-3" />
+
+              <div className="h-4 w-20 rounded bg-white/10 mb-2" />
+
+              <div className="h-3 w-14 rounded bg-white/5" />
+            </div>
+          ))}
+        </div>
       </section>
     );
   }
-
   if (error) {
     return (
       <section

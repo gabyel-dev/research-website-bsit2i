@@ -209,7 +209,7 @@ export const ResearchArticles = () => {
                 </p>
               </div>
 
-              <p className="text-sm text-mist/70 leading-relaxed">
+              <p className="text-sm text-mist/70 leading-relaxed text-justify">
                 {article.summary}
               </p>
 
