@@ -1,11 +1,9 @@
 import { useState, useEffect, type FormEvent } from "react";
 import { researchApi } from "../../services/research.service.js";
-import { useAuth } from "../../context/AuthContext.js";
+
 import { ResearchCardSkeleton } from "../skeletons/ResearchCardSkeleton.js";
-import { GoTrash } from "react-icons/go";
 
 export const ResearchArticles = () => {
-  const { user } = useAuth();
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -34,16 +32,6 @@ export const ResearchArticles = () => {
 
     fetchResearches();
   }, []);
-
-  const openEdit = (research: any) => {
-    setEditing(research);
-    setEditForm({
-      title: research.title || "",
-      summary: research.summary || "",
-      pdf_link: research.pdf_link || "",
-    });
-    setActionError("");
-  };
 
   const handleUpdate = async (e: FormEvent) => {
     e.preventDefault();
