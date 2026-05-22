@@ -15,7 +15,7 @@ export const TopNav = () => {
 
   return (
     <>
-      <header className="sticky inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16  backdrop-blur-md md:bg-transparent md:backdrop-blur-none md:border-none">
+      <header className=" fixed inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
         <div className="flex gap-2">
           <button
             className="md:hidden z-50 text-white p-2"
@@ -104,7 +104,7 @@ export const TopNav = () => {
           ) : (
             <Link
               to="/login"
-              className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-white/5 flex items-center gap-2"
+              className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-indigo-500 flex items-center gap-2"
             >
               Log in →
             </Link>

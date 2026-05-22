@@ -29,12 +29,19 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full flex min-h-[80vh] flex-col md:items-center justify-center overflow-hidden bg-[#0A0710] px-6 md:text-center mb-10">
+    <section className="relative w-full flex h-[100vh]  flex-col md:items-center justify-center overflow-hidden bg-[#0A0710]  md:text-center pb-10 ">
       {/* Abstract Animated Backgrounds */}
       <div
         ref={gridRef}
-        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]"
       />
+      <div className=" fixed md:absolute w-full h-[130vh] opacity-10 md:opacity-25">
+        <img
+          src="/bg.webp"
+          alt="background image hero section"
+          className="  bg-cover w-full h-full"
+        />
+      </div>
 
       <div
         ref={glowRef}
@@ -47,18 +54,18 @@ export const Hero = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A0710_80%)] opacity-90" />
 
       {/* Bottom Gradient for smooth transition */}
-      <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-48 bg-gradient-to-t from-[#0A0710] to-transparent z-2" />
+      <div className="pointer-events-none absolute hidden md:block bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0A0710] to-transparent z-2" />
 
       {/* Content */}
-      <div className="relative z-10 flex max-w-4xl flex-col  md:items-center z-21 ">
-        <h1 className=" text-5xl font-semibold leading-[1.1] tracking-tight text-slate-600/90 md:text-[72px]">
+      <div className="relative  flex max-w-4xl flex-col  md:items-center px-6 z-21 mt-20  ">
+        <h1 className=" text-5xl font-semibold leading-[1.1] tracking-tighter text-slate-400/90 md:text-[72px]">
           Academic
           <span className="text-blue-400 italic"> Research Compiler</span>
           <br />
           for <span className="text-blue-200">BSIT 2I</span> Students
         </h1>
 
-        <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-white/50">
+        <p className="md:mt-8 mt-5 max-w-2xl md:text-[15px] text-xs leading-relaxed text-white/50">
           Elevate your studies, maximize knowledge sharing, and gain powerful
           insights with our curated BSIT research repository.
         </p>

@@ -92,7 +92,7 @@ export const ResearchersLoggedIn = () => {
           </svg>
           Our Researchers
         </span>
-        <h2 className="mt-3 text-3xl font-bold text-white">BSIT 2I Students</h2>
+        <h2 className="mt-3 text-3xl font-bold text-white">Students</h2>
         <p className="mt-2 text-sm text-mist/60">
           Meet the researchers contributed
         </p>
@@ -106,7 +106,7 @@ export const ResearchersLoggedIn = () => {
                 <img
                   src={researcher.profile_image_url}
                   alt={researcher.full_name}
-                  className="w-20 h-20 rounded-full object-cover ring-2 ring-white/10 group-hover:ring-purple-500/30 transition-all"
+                  className="w-20 h-20 rounded-full object-cover ring-blue-700 ring-2 border-2 border-transparent  transition-all"
                 />
               ) : (
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center ring-2 ring-white/10 group-hover:ring-purple-500/30 transition-all">

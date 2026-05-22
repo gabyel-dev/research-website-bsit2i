@@ -132,7 +132,7 @@ export const ViewAllResearches = () => {
             All Research Papers
           </h1>
           <p className="text-mist/60 mb-10">
-            Browse all published research from our community
+            Browse all published research from BSIT 2I Students
           </p>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
