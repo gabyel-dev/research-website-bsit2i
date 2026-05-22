@@ -15,16 +15,13 @@ export const Footer = () => {
         <div className="flex gap-10">
           <div>
             <p className="mb-2 text-white">Email</p>
-            <p>research@bsit.edu</p>
+            <p>@paterostechnologicalcollege.edu.ph</p>
           </div>
-          <div>
-            <p className="mb-2 text-white">Office</p>
-            <p>Tech Hall 2F</p>
-          </div>
+          =
         </div>
       </div>
       <p className="mt-6 text-xs text-mist/40">
-        © 2026 BSIT Research Hub. All rights reserved.
+        © 2026 BSIT2I Research Web. All rights reserved.
       </p>
     </footer>
   );

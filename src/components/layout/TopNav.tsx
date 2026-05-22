@@ -73,16 +73,13 @@ export const TopNav = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-white/70">
           <a href="#features" className="transition hover:text-white">
-            Features
+            Articles
           </a>
           <a href="#docs" className="transition hover:text-white">
-            Docs
+            Researchers
           </a>
           <a href="#about" className="transition hover:text-white">
-            About us
-          </a>
-          <a href="#contact" className="transition hover:text-white">
-            Contact us
+            Contributors
           </a>
         </nav>
 
