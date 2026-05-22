@@ -72,13 +72,13 @@ export const TopNav = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-white/70">
-          <a href="#features" className="transition hover:text-white">
+          <a href="#articles" className="transition hover:text-white">
             Articles
           </a>
-          <a href="#docs" className="transition hover:text-white">
+          <a href="#researchers" className="transition hover:text-white">
             Researchers
           </a>
-          <a href="#about" className="transition hover:text-white">
+          <a href="#contributors" className="transition hover:text-white">
             Contributors
           </a>
         </nav>
@@ -118,21 +118,21 @@ export const TopNav = () => {
           <div className="absolute top-full left-0 right-0 bg-black backdrop-blur-lg border-b border-white/10 p-6 flex flex-col gap-6 md:hidden text-center z-40">
             <nav className="flex flex-col gap-4 text-sm font-medium text-white/70">
               <a
-                href="#features"
+                href="#articles"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="transition hover:text-white py-2"
               >
                 Articles
               </a>
               <a
-                href="#docs"
+                href="#researchers"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="transition hover:text-white py-2"
               >
                 Researchers
               </a>
               <a
-                href="#about"
+                href="#contributors"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="transition hover:text-white py-2"
               >

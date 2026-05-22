@@ -10,7 +10,7 @@ const contributors = [
     id: 2,
     name: "John Patrick Pestada",
     role: "Frontend Developer",
-    image: "/frontend_dev.png",
+    image: "/icon_editor.png",
     bio: "Designs and implements the user interface, creating an intuitive and visually appealing experience",
   },
   {

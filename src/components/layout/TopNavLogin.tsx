@@ -4,12 +4,17 @@ export const TopNavLogin = () => {
   return (
     <>
       <header className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16  backdrop-blur-md md:bg-transparent md:backdrop-blur-none md:border-none">
-        <Link
-          to="/"
-          className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 z-50"
-        >
-          BSIT 2I
-        </Link>
+        <div className="flex gap-2">
+          <Link to="/" className="w-10 h-10 hidden md:block">
+            <img src="/logo.png" alt="website logo" />
+          </Link>
+          <Link
+            to="/"
+            className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 z-50"
+          >
+            BSIT 2I
+          </Link>
+        </div>
       </header>
     </>
   );

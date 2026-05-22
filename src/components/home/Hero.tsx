@@ -64,31 +64,15 @@ export const Hero = () => {
           insights with our curated BSIT research repository.
         </p>
 
-        <div className="mt-10 flex flex-wrap w-full items-center justify-center gap-4 z-21 relative">
-          <div className="hidden md:block">
-            <Link
-              to="/upload"
-              className="flex   z-21 relative w-full md:w-fit items-center gap-2 rounded-full border border-white/20 bg-transparent px-6 py-3 text-sm font-medium text-white transition hover:bg-white/5"
-            >
+        <div className="mt-10  flex z-21 relative w-fit items-center gap-2 rounded-full border border-white/20 bg-transparent pl-4 pr-1 py-1 text-sm font-medium text-white transition hover:bg-white/5">
+          <div className=" ">
+            <a href="#articles" className="">
               View Researches
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </Link>
+            </a>
           </div>
           <a
             href="#articles"
-            className="flex w-full md:w-fit items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 px-6 py-3 text-sm font-medium text-slate-900 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
+            className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 px-5 py-3 text-sm font-medium text-slate-900 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
           >
             <svg
               width="14"
@@ -103,7 +87,6 @@ export const Hero = () => {
               <path d="m5 12 7-7 7 7"></path>
               <path d="M12 19V5"></path>
             </svg>
-            Explore Researches
           </a>
         </div>
       </div>

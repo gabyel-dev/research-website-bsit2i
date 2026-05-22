@@ -215,7 +215,11 @@ export const ResearchArticles = () => {
 
               <div className="flex items-center gap-2 mt-4 text-xs text-mist/50">
                 <time>
-                  {new Date(article.upload_date).toLocaleDateString()}
+                  {new Date(article.upload_date).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
                 </time>
               </div>
             </div>
