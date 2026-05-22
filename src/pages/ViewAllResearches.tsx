@@ -5,7 +5,7 @@ import { TopNav } from "../components/layout/TopNav.js";
 import { Footer } from "../components/layout/Footer.js";
 import { ResearchCardSkeleton } from "../components/skeletons/ResearchCardSkeleton.js";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 
 export const ViewAllResearches = () => {
