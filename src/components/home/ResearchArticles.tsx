@@ -155,7 +155,7 @@ export const ResearchArticles = () => {
                 </span>
               </div>
 
-              <p className="text-xs text-mist/70 leading-relaxed text-justify">
+              <p className="text-[10px] text-mist/70 leading-relaxed text-justify">
                 {article.summary}
               </p>
             </div>
