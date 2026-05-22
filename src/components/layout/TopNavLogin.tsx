@@ -5,7 +5,7 @@ export const TopNavLogin = () => {
     <>
       <header className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16  backdrop-blur-md md:bg-transparent md:backdrop-blur-none md:border-none">
         <div className="flex gap-2">
-          <Link to="/" className="w-10 h-10 hidden md:block">
+          <Link to="/" className="w-10 h-10 ">
             <img src="/logo.png" alt="website logo" />
           </Link>
           <Link

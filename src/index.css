@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Futura";
+  src: url("fonts/FuturaCyrillicDemi.woff") format("woff");
+}
+
+.futura {
+  font-family: "Futura", sans-serif;
+}
+
 :root {
   color-scheme: dark;
 }

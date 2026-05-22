@@ -13,7 +13,15 @@ export const Login = () => {
   return (
     <>
       <TopNavLogin />
+
       <div className="min-h-screen flex flex-col items-center justify-center bg-black text-mist">
+        <div className=" fixed md:absolute w-full h-[100vh] opacity-10 md:opacity-10">
+          <img
+            src="/bg.webp"
+            alt="background image hero section"
+            className="  bg-cover w-full h-full"
+          />
+        </div>
         <div className="mx-auto flex max-w-lg flex-col items-center gap-6 px-6 py-24">
           <div className="text-center">
             <p className="text-xs uppercase tracking-[0.28em] text-mist/60">
