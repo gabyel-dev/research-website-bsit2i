@@ -166,27 +166,26 @@ export const ViewAllResearches = () => {
                         {research.author?.charAt(0) || "R"}
                       </div>
                     )}
-                    <p className="text-xs uppercase tracking-[0.2em] text-mist/60">
-                      {research.author}
-                    </p>
+                    <span className="text-xs text-mist/60 flex flex-col">
+                      <p className="text-xs  tracking-[0.2em] text-mist/60">
+                        {research.author}
+                      </p>
+                      <time className="text-[10px] text-mist/50">
+                        {new Date(research.upload_date).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          },
+                        )}
+                      </time>
+                    </span>
                   </div>
 
                   <p className="text-sm text-mist/70 leading-relaxed line-clamp-4 text-justify">
                     {research.summary}
                   </p>
-
-                  <div className="flex items-center gap-2 mt-4 text-xs text-mist/50">
-                    <time>
-                      {new Date(research.upload_date).toLocaleDateString(
-                        "en-US",
-                        {
-                          month: "long",
-                          day: "numeric",
-                          year: "numeric",
-                        },
-                      )}
-                    </time>
-                  </div>
                 </div>
 
                 <div className="mt-6 md:flex flex flex-col gap-2">
