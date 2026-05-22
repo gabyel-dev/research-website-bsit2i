@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext.js";
 import { TopNav } from "../components/layout/TopNav.js";
 import { Footer } from "../components/layout/Footer.js";
 import { api } from "../services/research.service.js";
+import toast from "react-hot-toast";
 
 /* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
 
@@ -44,10 +45,13 @@ export const Upload = () => {
         },
       });
 
+      toast.success("Research uploaded successfully!");
+
       setSuccess(true);
       setFormData({ title: "", summary: "", pdfLink: "" });
       setPdfFile(null);
     } catch (err: any) {
+      toast.error(err.response?.data?.error || err.message);
       setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);

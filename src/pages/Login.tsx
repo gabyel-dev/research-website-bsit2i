@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import { useState } from "react";
 import { TopNavLogin } from "../components/layout/TopNavLogin.js";
+import toast from "react-hot-toast";
 
 export const Login = () => {
   const { login } = useAuth();
@@ -42,10 +43,12 @@ export const Login = () => {
                   }
                 } catch (err: any) {
                   setError(err.response?.data?.error || "Login failed");
+                  toast.error(err.response?.data?.error || err.message);
                 }
               }}
               onError={() => {
                 setError("Google login failed");
+                toast.error("Google login failed");
               }}
               hosted_domain={`${import.meta.env.VITE_ALLOWED_EMAIL_DOMAIN}`}
             />
