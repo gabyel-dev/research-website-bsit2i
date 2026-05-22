@@ -17,7 +17,6 @@ export const Footer = () => {
             <p className="mb-2 text-white">Email</p>
             <p>@paterostechnologicalcollege.edu.ph</p>
           </div>
-          =
         </div>
       </div>
       <p className="mt-6 text-xs text-mist/40">
