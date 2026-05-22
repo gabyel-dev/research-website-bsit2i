@@ -2,28 +2,22 @@ const contributors = [
   {
     id: 1,
     name: "Gabriel S. Guban",
-    role: "Website Developer",
+    role: "Lead Developer",
     image: "/web_dev.png",
     bio: "develops and maintains the research platform, ensuring a seamless user experience",
-    linkedin: "#",
-    github: "#",
   },
   {
     id: 2,
     name: "John Patrick Pestada",
-    role: "Research Coordinator",
-    image:
-      "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&h=800&fit=crop",
-    bio: "Manages research projects and team collaboration",
-    linkedin: "#",
-    github: "#",
+    role: "Frontend Developer",
+    image: "/frontend_dev.png",
+    bio: "Designs and implements the user interface, creating an intuitive and visually appealing experience",
   },
   {
     id: 3,
-    name: "Johnmark Celmar",
+    name: "Janmark Celmar",
     role: "UI Specialist",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=800&fit=crop",
+    image: "/ui_specialist.png",
     bio: "Designs intuitive interfaces and user experiences",
     linkedin: "#",
     github: "#",
@@ -31,10 +25,9 @@ const contributors = [
   {
     id: 4,
     name: "Lancz Arceo",
-    role: "Faculty Advisor",
-    image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=800&fit=crop",
-    bio: "Provides academic guidance and mentorship",
+    role: "Icon Provider",
+    image: "/icon_provider.jpg",
+    bio: "Icon provider for the website.",
     linkedin: "#",
     github: "#",
   },
@@ -68,7 +61,7 @@ export const Contributors = () => {
             key={contributor.id}
             className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden backdrop-blur hover:border-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300"
           >
-            <div className="aspect-[3/4] overflow-hidden">
+            <div className=" overflow-hidden">
               <img
                 src={contributor.image}
                 alt={contributor.name}

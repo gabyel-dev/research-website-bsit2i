@@ -15,12 +15,59 @@ export const TopNav = () => {
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16  backdrop-blur-md md:bg-transparent md:backdrop-blur-none md:border-none">
-        <Link
-          to="/"
-          className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 z-50"
-        >
-          BSIT 2I
+      <header className="sticky inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16  backdrop-blur-md md:bg-transparent md:backdrop-blur-none md:border-none">
+        <div className="flex gap-2">
+          <button
+            className="md:hidden z-50 text-white p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            )}
+          </button>
+          <Link to="/" className="w-10 h-10 hidden md:block">
+            <img src="/logo.png" alt="website logo" />
+          </Link>
+          <Link
+            to="/"
+            className="text-2xl font-bold tracking-tight text-white flex items-center gap-2 z-50"
+          >
+            BSIT 2I
+          </Link>
+        </div>
+
+        <Link to="/" className="w-10 h-10 md:hidden">
+          <img src="/logo.png" alt="website logo" />
         </Link>
 
         {/* Desktop Nav */}
@@ -68,44 +115,6 @@ export const TopNav = () => {
         </div>
 
         {/* Mobile Hamburger Button */}
-        <button
-          className="md:hidden z-50 text-white p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          )}
-        </button>
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (

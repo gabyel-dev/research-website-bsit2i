@@ -76,7 +76,7 @@ export const ResearchersLoggedIn = () => {
         </span>
         <h2 className="mt-3 text-3xl font-bold text-white">BSIT 2I Students</h2>
         <p className="mt-2 text-sm text-mist/60">
-          Meet the researchers contributing to our platform
+          Meet the researchers contributed
         </p>
       </div>
 
@@ -97,9 +97,6 @@ export const ResearchersLoggedIn = () => {
                   </span>
                 </div>
               )}
-              <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-[#0A0710]">
-                <div className="w-full h-full rounded-full bg-green-400 animate-pulse"></div>
-              </div>
             </div>
             <h3 className="text-sm font-semibold text-white text-center group-hover:text-purple-300 transition-colors line-clamp-2">
               {researcher.full_name}

@@ -30,7 +30,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full flex min-h-[100vh] flex-col md:items-center justify-center overflow-hidden bg-[#0A0710] px-6 md:text-center pt-20">
+    <section className="relative w-full flex min-h-[80vh] flex-col md:items-center justify-center overflow-hidden bg-[#0A0710] px-6 md:text-center mb-10">
       {/* Abstract Animated Backgrounds */}
       <div
         ref={gridRef}
@@ -52,10 +52,11 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 flex max-w-4xl flex-col  md:items-center z-21 ">
-        <h1 className=" text-5xl font-semibold leading-[1.1] tracking-tight text-white/70 md:text-[72px]">
-          <span className="text-blue-400 italic">Academic Research </span>
+        <h1 className=" text-5xl font-semibold leading-[1.1] tracking-tight text-slate-600/90 md:text-[72px]">
+          Academic
+          <span className="text-blue-400 italic"> Research Compiler</span>
           <br />
-          Compiler for <span className="text-blue-200">BSIT 2I</span> Students
+          for <span className="text-blue-200">BSIT 2I</span> Students
         </h1>
 
         <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-white/50">

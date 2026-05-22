@@ -47,8 +47,6 @@ export const Login = () => {
               onError={() => {
                 setError("Google login failed");
               }}
-              useOneTap
-              auto_select
               hosted_domain={`${import.meta.env.VITE_ALLOWED_EMAIL_DOMAIN}`}
             />
           </div>

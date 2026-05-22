@@ -128,7 +128,7 @@ export const ResearchArticles = () => {
     );
   }
 
-  if (articles.length === 0) {
+  if (articles?.length === 0) {
     return (
       <section
         id="articles"
@@ -182,10 +182,10 @@ export const ResearchArticles = () => {
         </a>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {articles.map((article) => (
+        {articles?.map((article) => (
           <article
             key={article.id}
-            className="group flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300"
+            className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300"
           >
             <div>
               <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors leading-snug mb-4">
