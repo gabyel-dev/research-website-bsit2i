@@ -15,7 +15,7 @@ export const TopNav = () => {
 
   return (
     <>
-      <header className=" fixed inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
+      <header className=" fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
         <div className="flex gap-2">
           <button
             className="md:hidden z-50 text-white p-2"

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
+import { IoIosArrowBack } from "react-icons/io";
 
 export const TopNavViewAll = () => {
   const { user, logout } = useAuth();
@@ -15,7 +16,13 @@ export const TopNavViewAll = () => {
 
   return (
     <>
-      <header className=" fixed inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
+      <header className=" absolute inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
+        <div className=" md:hidden gap-2">
+          <Link to="/" className="flex items-center gap-3 text-2xl">
+            <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
+          </Link>
+        </div>
+
         <div className="flex gap-2">
           <Link to="/" className="w-10 h-10 hidden md:block">
             <img src="/logo.png" alt="website logo" />
@@ -27,7 +34,6 @@ export const TopNavViewAll = () => {
             BSIT 2I
           </Link>
         </div>
-
         <Link to="/" className="w-10 h-10 md:hidden">
           <img src="/logo.png" alt="website logo" />
         </Link>

@@ -2,6 +2,7 @@ import { useState, useEffect, type FormEvent } from "react";
 import { researchApi } from "../../services/research.service.js";
 import { useAuth } from "../../context/AuthContext.js";
 import { ResearchCardSkeleton } from "../skeletons/ResearchCardSkeleton.js";
+import { GoTrash } from "react-icons/go";
 
 export const ResearchArticles = () => {
   const { user } = useAuth();
@@ -265,24 +266,6 @@ export const ResearchArticles = () => {
                   />
                 </svg>
               </a>
-              {user?.id === article.author_id && (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => openEdit(article)}
-                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/10"
-                  >
-                    Update
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setDeleteModal(article.id)}
-                    className="inline-flex items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
-                  >
-                    Delete
-                  </button>
-                </>
-              )}
             </div>
           </article>
         ))}

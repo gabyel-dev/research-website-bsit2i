@@ -1,12 +1,14 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { researchApi } from "../services/research.service.js";
 import { useAuth } from "../context/AuthContext.js";
-import { TopNav } from "../components/layout/TopNav.js";
+
 import { Footer } from "../components/layout/Footer.js";
 import { ResearchCardSkeleton } from "../components/skeletons/ResearchCardSkeleton.js";
-import { FaArrowLeft } from "react-icons/fa6";
+
 import { Link } from "react-router-dom";
 import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
+import { IoIosArrowBack } from "react-icons/io";
+import { GoTrash } from "react-icons/go";
 
 export const ViewAllResearches = () => {
   const { user } = useAuth();
@@ -94,7 +96,7 @@ export const ViewAllResearches = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#0A0710] text-mist">
-        <TopNav />
+        <TopNavViewAll />
         <main className="pt-24 pb-20 px-6 md:px-16">
           <div className="max-w-7xl mx-auto">
             <div className="h-10 bg-white/10 rounded w-64 mb-3 animate-pulse"></div>
@@ -117,7 +119,7 @@ export const ViewAllResearches = () => {
   if (fetchError) {
     return (
       <div className="min-h-screen bg-[#0A0710] text-mist">
-        <TopNav />
+        <TopNavViewAll />
         <div className="pt-24 text-center text-red-400">
           Error: {fetchError}
         </div>
@@ -131,8 +133,8 @@ export const ViewAllResearches = () => {
       <TopNavViewAll />
       <main className="pt-24 pb-20 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <Link to="/" className="flex items-center gap-3 mb-6">
-            <FaArrowLeft className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
+          <Link to="/" className="hidden md:block items-center gap-3 mb-6">
+            <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
           </Link>
           <h1 className="text-4xl font-bold text-white mb-3">
             All Research Papers
@@ -187,12 +189,12 @@ export const ViewAllResearches = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-6 md:flex flex flex-col gap-2">
                   <a
                     href={research.pdf_url || research.pdf_link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-white group-hover:scale-[1.02]"
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-indigo-600 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-white group-hover:scale-[1.02]"
                   >
                     <svg
                       className="w-4 h-4"
@@ -211,20 +213,22 @@ export const ViewAllResearches = () => {
                   </a>
                   {user?.id === research.author_id && (
                     <>
-                      <button
-                        type="button"
-                        onClick={() => openEdit(research)}
-                        className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/10"
-                      >
-                        Update
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDeleteModal(research.id)}
-                        className="inline-flex items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
-                      >
-                        Delete
-                      </button>
+                      <div className="flex gap-2  w-full">
+                        <button
+                          type="button"
+                          onClick={() => openEdit(research)}
+                          className="inline-flex items-center w-full justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/10"
+                        >
+                          Update
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setDeleteModal(research.id)}
+                          className="inline-flex items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+                        >
+                          <GoTrash className="w-4 h-4" />
+                        </button>
+                      </div>
                     </>
                   )}
                 </div>
