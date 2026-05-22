@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { animate } from "animejs";
-import { Link } from "react-router-dom";
 
 export const Hero = () => {
   const gridRef = useRef<HTMLDivElement | null>(null);
