@@ -4,6 +4,9 @@ import { useAuth } from "../context/AuthContext.js";
 import { TopNav } from "../components/layout/TopNav.js";
 import { Footer } from "../components/layout/Footer.js";
 import { ResearchCardSkeleton } from "../components/skeletons/ResearchCardSkeleton.js";
+import { FaArrowLeft } from "react-icons/fa6";
+import { Link, Navigate } from "react-router-dom";
+import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 
 export const ViewAllResearches = () => {
   const { user } = useAuth();
@@ -125,9 +128,12 @@ export const ViewAllResearches = () => {
 
   return (
     <div className="min-h-screen bg-[#0A0710] text-mist">
-      <TopNav />
+      <TopNavViewAll />
       <main className="pt-24 pb-20 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
+          <Link to="/" className="flex items-center gap-3 mb-6">
+            <FaArrowLeft className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
+          </Link>
           <h1 className="text-4xl font-bold text-white mb-3">
             All Research Papers
           </h1>

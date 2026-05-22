@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
 
-export const TopNav = () => {
+export const TopNavViewAll = () => {
   const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
@@ -17,44 +17,6 @@ export const TopNav = () => {
     <>
       <header className=" fixed inset-x-0 top-0 z-50 flex items-center justify-between px-8 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
         <div className="flex gap-2">
-          <button
-            className="md:hidden z-50 text-white p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            )}
-          </button>
           <Link to="/" className="w-10 h-10 hidden md:block">
             <img src="/logo.png" alt="website logo" />
           </Link>
@@ -69,21 +31,6 @@ export const TopNav = () => {
         <Link to="/" className="w-10 h-10 md:hidden">
           <img src="/logo.png" alt="website logo" />
         </Link>
-
-        {/* Desktop Nav */}
-        <nav
-          className={`hidden md:flex items-center gap-8 text-[13px] font-medium text-white/70`}
-        >
-          <a href="#articles" className="transition hover:text-white">
-            Articles
-          </a>
-          <a href="#researchers" className="transition hover:text-white">
-            Researchers
-          </a>
-          <a href="#contributors" className="transition hover:text-white">
-            Contributors
-          </a>
-        </nav>
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-4">
@@ -118,29 +65,6 @@ export const TopNav = () => {
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div className="absolute top-full left-0 right-0 bg-black backdrop-blur-lg border-b border-white/10 p-6 flex flex-col gap-6 md:hidden text-center z-40">
-            <nav className="flex flex-col gap-4 text-sm font-medium text-white/70">
-              <a
-                href="#articles"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="transition hover:text-white py-2"
-              >
-                Articles
-              </a>
-              <a
-                href="#researchers"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="transition hover:text-white py-2"
-              >
-                Researchers
-              </a>
-              <a
-                href="#contributors"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="transition hover:text-white py-2"
-              >
-                Contributors
-              </a>
-            </nav>
             <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
               {user ? (
                 <>
