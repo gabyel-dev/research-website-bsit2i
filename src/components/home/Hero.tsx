@@ -35,7 +35,7 @@ export const Hero = () => {
         ref={gridRef}
         className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]"
       />
-      <div className=" fixed md:absolute w-full h-[130vh] opacity-10 md:opacity-25">
+      <div className=" fixed md:absolute w-full h-[130vh] opacity-10 md:opacity-40">
         <img
           src="/bg.webp"
           alt="background image hero section"

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext.js";
-import { TopNav } from "../components/layout/TopNav.js";
 import { Footer } from "../components/layout/Footer.js";
 import { api } from "../services/research.service.js";
 import toast from "react-hot-toast";
+import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
+import { Link } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
 
 /* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
 
@@ -60,15 +62,16 @@ export const Upload = () => {
 
   return (
     <div className="min-h-screen bg-[#0A0710] text-mist">
-      <TopNav />
+      <TopNavViewAll />
       <main className="pt-24 pb-20 px-6 md:px-16">
         <div className="max-w-3xl mx-auto">
+          <Link to="/" className="hidden md:block items-center gap-3 mb-6">
+            <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
+          </Link>
           <h1 className="text-4xl font-bold text-white mb-3">
             Upload Research
           </h1>
-          <p className="text-mist/60 mb-10">
-            Share your research with the community
-          </p>
+          <p className="text-mist/60 mb-10">Share your research</p>
 
           {success && (
             <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
@@ -95,7 +98,7 @@ export const Upload = () => {
                 }
                 required
                 className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none"
-                placeholder="Enter research title"
+                placeholder="ex. The Impact of AI on Modern Research"
               />
             </div>
 
@@ -135,7 +138,7 @@ export const Upload = () => {
                     .split(/\s+/)
                     .filter((w) => w).length
                 }{" "}
-                / 150 words
+                / 100 words
               </p>
             </div>
 

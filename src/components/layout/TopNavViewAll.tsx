@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
 import { IoIosArrowBack } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
 
 export const TopNavViewAll = () => {
   const { user, logout } = useAuth();
@@ -42,19 +43,19 @@ export const TopNavViewAll = () => {
         <div className="hidden md:flex items-center gap-4">
           {user ? (
             <>
-              <button
-                type="button"
-                onClick={() => setIsLogoutModalOpen(true)}
-                className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-white/5"
-              >
-                Log out
-              </button>
               <Link
                 to="/upload"
-                className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-white/5 flex items-center gap-2"
+                className="rounded-full border border-white/20 bg-indigo-600 px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-white/5 flex items-center gap-2"
               >
                 Upload Research →
               </Link>
+              <button
+                type="button"
+                onClick={() => setIsLogoutModalOpen(true)}
+                className="rounded-full border border-white/20 bg-transparent p-2 text-xs font-medium tracking-wide text-white transition hover:bg-white/5"
+              >
+                <IoLogOut className="inline-block pl-1 text-2xl text-red-500" />
+              </button>
             </>
           ) : (
             <Link
@@ -107,6 +108,7 @@ export const TopNavViewAll = () => {
       {isLogoutModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-zinc-950 p-6 text-center shadow-2xl">
+            <img src="/logout.svg" alt="logout-img" />
             <h3 className="mb-2 text-xl font-semibold text-white">
               Confirm Logout
             </h3>
@@ -116,17 +118,17 @@ export const TopNavViewAll = () => {
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
               <button
                 type="button"
-                onClick={() => setIsLogoutModalOpen(false)}
-                className="flex-1 rounded-xl border border-white/10 bg-transparent px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/5"
+                onClick={handleLogoutConfirm}
+                className="flex-1 rounded-xl bg-transparent px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/5"
               >
-                Cancel
+                Log out
               </button>
               <button
                 type="button"
-                onClick={handleLogoutConfirm}
-                className="flex-1 rounded-xl bg-red-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-600"
+                onClick={() => setIsLogoutModalOpen(false)}
+                className="flex-1 rounded-xl border border-white/10  bg-red-500 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-600 "
               >
-                Log out
+                Cancel
               </button>
             </div>
           </div>
