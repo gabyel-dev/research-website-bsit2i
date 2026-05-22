@@ -122,28 +122,21 @@ export const TopNav = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="transition hover:text-white py-2"
               >
-                Features
+                Articles
               </a>
               <a
                 href="#docs"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="transition hover:text-white py-2"
               >
-                Docs
+                Researchers
               </a>
               <a
                 href="#about"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="transition hover:text-white py-2"
               >
-                About us
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="transition hover:text-white py-2"
-              >
-                Contact us
+                Contributors
               </a>
             </nav>
             <div className="flex flex-col gap-4 border-t border-white/10 pt-6">
