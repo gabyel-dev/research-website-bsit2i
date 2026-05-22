@@ -40,7 +40,7 @@ export const Contributors = () => {
       className="mt-24 mx-auto w-full max-w-7xl px-6 md:px-16 pb-10"
     >
       <div className="mb-12 text-center">
-        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-purple-400/80 font-semibold">
+        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-emerald-400/80 font-semibold">
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
           </svg>
@@ -59,7 +59,7 @@ export const Contributors = () => {
         {contributors.map((contributor) => (
           <div
             key={contributor.id}
-            className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden backdrop-blur hover:border-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300"
+            className="group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden backdrop-blur hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300"
           >
             <div className=" overflow-hidden">
               <img
@@ -70,10 +70,10 @@ export const Contributors = () => {
             </div>
 
             <div className="p-5">
-              <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">
+              <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
                 {contributor.name}
               </h3>
-              <p className="text-sm text-purple-400/80 font-semibold mb-2">
+              <p className="text-sm text-emerald-400/80 font-semibold mb-2">
                 {contributor.role}
               </p>
               <p className="text-xs text-mist/60 leading-relaxed mb-4">

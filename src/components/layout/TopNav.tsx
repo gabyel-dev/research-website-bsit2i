@@ -92,7 +92,7 @@ export const TopNav = () => {
             <>
               <Link
                 to="/upload"
-                className="rounded-full border border-white/20 bg-indigo-600 px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-white/5 flex items-center gap-2"
+                className="rounded-full border border-white/20 bg-emerald-600 px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-white/5 flex items-center gap-2"
               >
                 Upload Research →
               </Link>
@@ -107,7 +107,7 @@ export const TopNav = () => {
           ) : (
             <Link
               to="/login"
-              className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-indigo-500 flex items-center gap-2"
+              className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-emerald-500 flex items-center gap-2"
             >
               Log in →
             </Link>

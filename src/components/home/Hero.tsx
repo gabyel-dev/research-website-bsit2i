@@ -45,10 +45,10 @@ export const Hero = () => {
 
       <div
         ref={glowRef}
-        className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 mix-blend-screen blur-[120px]"
+        className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/10 mix-blend-screen blur-[120px]"
       />
-      <div className="absolute left-[20%] top-[20%] h-[400px] w-[400px] rounded-full bg-purple-600/20 mix-blend-screen blur-[100px]" />
-      <div className="absolute right-[20%] top-[30%] h-[500px] w-[500px] rounded-full bg-indigo-500/10 mix-blend-screen blur-[120px]" />
+      <div className="absolute left-[20%] top-[20%] h-[400px] w-[400px] rounded-full bg-emerald-600/20 mix-blend-screen blur-[100px]" />
+      <div className="absolute right-[20%] top-[30%] h-[500px] w-[500px] rounded-full bg-green-500/10 mix-blend-screen blur-[120px]" />
 
       {/* Black Vignette overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A0710_80%)] opacity-90" />
@@ -60,9 +60,9 @@ export const Hero = () => {
       <div className="relative  flex max-w-4xl flex-col  md:items-center px-6 z-21 mt-20  ">
         <h1 className=" text-5xl font-semibold leading-[1.1] tracking-tighter text-slate-400/90 md:text-[72px]">
           Academic
-          <span className="text-blue-400 italic"> Research Compiler</span>
+          <span className="text-emerald-400 italic"> Research Compiler</span>
           <br />
-          for <span className="text-blue-200">BSIT 2I</span> Students
+          for <span className="text-emerald-100">BSIT 2I</span> Students
         </h1>
 
         <p className="md:mt-8 mt-5 max-w-2xl md:text-[15px] text-xs leading-relaxed text-white/50">
@@ -78,7 +78,7 @@ export const Hero = () => {
           </div>
           <a
             href="#articles"
-            className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-300 px-5 py-3 text-sm font-medium text-slate-900 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
+            className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-5 py-3 text-sm font-medium text-slate-900 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
           >
             <svg
               width="14"

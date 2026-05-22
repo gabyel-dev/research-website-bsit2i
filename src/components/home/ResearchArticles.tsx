@@ -31,7 +31,7 @@ export const ResearchArticles = () => {
       >
         <div className="flex items-end justify-between mb-10">
           <div>
-            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-purple-400/80 font-semibold">
+            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-emerald-400/80 font-semibold">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
               </svg>
@@ -85,7 +85,7 @@ export const ResearchArticles = () => {
     >
       <div className="flex items-end justify-between mb-10">
         <div>
-          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-purple-400/80 font-semibold">
+          <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-emerald-400/80 font-semibold">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
             </svg>
@@ -100,7 +100,7 @@ export const ResearchArticles = () => {
         </div>
         <a
           href="/researches"
-          className="hidden md:flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-white/70 hover:bg-white/10 hover:border-white/30 transition-all"
+          className="hidden md:flex items-center gap-2 border border-white/20 bg-white/5 px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-white/70 hover:bg-white/10 hover:border-white/30 transition-all"
         >
           View All
           <svg
@@ -122,10 +122,10 @@ export const ResearchArticles = () => {
         {articles?.map((article) => (
           <article
             key={article.id}
-            className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300"
+            className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300"
           >
             <div>
-              <h3 className="text-xl font-bold  text-purple-300 transition-colors leading-snug mb-4">
+              <h3 className="text-xl font-bold  text-emerald-300 transition-colors leading-snug mb-4">
                 {article.title}
               </h3>
 
@@ -137,7 +137,7 @@ export const ResearchArticles = () => {
                     className="w-8 h-8 rounded-full ring-2 ring-white/10 object-cover"
                   />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-sm ring-2 ring-white/10">
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm ring-2 ring-white/10">
                     {article.author.charAt(0)}
                   </div>
                 )}
@@ -165,7 +165,7 @@ export const ResearchArticles = () => {
                 href={article.pdf_url || article.pdf_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-indigo-600 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-white group-hover:scale-[1.02]"
+                className="flex-1 inline-flex items-center justify-center gap-2  border border-white/30 bg-emerald-600 px-4 py-3 text-sm font-medium text-white/80 transition hover:emerald-emerald-500/50 hover:bg-emerald-500/10 hover:text-white group-hover:scale-[1.02]"
               >
                 <svg
                   className="w-4 h-4"
@@ -184,7 +184,7 @@ export const ResearchArticles = () => {
               </a>
               <a
                 href="/researches"
-                className="px-4 py-3 rounded-lg border border-white/30 bg-white/5 text-white/80 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all"
+                className="px-4 py-3 border border-white/30 bg-white/5 text-white/80 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all"
                 title="View All"
               >
                 <svg

@@ -86,7 +86,7 @@ export const ResearchersLoggedIn = () => {
       className="mt-24 mx-auto w-full max-w-7xl px-6 md:px-16"
     >
       <div className="mb-10">
-        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-purple-400/80 font-semibold">
+        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-emerald-400/80 font-semibold">
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
           </svg>
@@ -106,17 +106,17 @@ export const ResearchersLoggedIn = () => {
                 <img
                   src={researcher.profile_image_url}
                   alt={researcher.full_name}
-                  className="w-20 h-20 rounded-full object-cover ring-indigo-700 ring-2 border-2 border-transparent  transition-all"
+                  className="w-20 h-20 rounded-full object-cover ring-emerald-700 ring-2 border-2 border-transparent  transition-all"
                 />
               ) : (
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center ring-2 ring-white/10 group-hover:ring-purple-500/30 transition-all">
-                  <span className="text-2xl font-bold text-purple-400">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500/20 to-green-500/20 flex items-center justify-center ring-2 ring-white/10 group-hover:ring-emerald-500/30 transition-all">
+                  <span className="text-2xl font-bold text-emerald-400">
                     {researcher.full_name.charAt(0).toUpperCase()}
                   </span>
                 </div>
               )}
             </div>
-            <h3 className="text-sm font-semibold text-white text-center group-hover:text-purple-300 transition-colors line-clamp-2">
+            <h3 className="text-sm font-semibold text-white text-center group-hover:text-emerald-300 transition-colors line-clamp-2">
               {researcher.full_name}
             </h3>
           </div>

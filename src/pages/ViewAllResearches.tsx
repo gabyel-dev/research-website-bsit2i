@@ -147,10 +147,10 @@ export const ViewAllResearches = () => {
             {researches.map((research) => (
               <article
                 key={research.id}
-                className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300"
+                className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300"
               >
                 <div>
-                  <h3 className="text-xl font-bold text-purple-300 transition-colors leading-snug mb-4">
+                  <h3 className="text-xl font-bold text-emerald-300 transition-colors leading-snug mb-4">
                     {research.title}
                   </h3>
 
@@ -162,7 +162,7 @@ export const ViewAllResearches = () => {
                         className="w-8 h-8 rounded-full ring-2 ring-white/10 object-cover"
                       />
                     ) : (
-                      <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-sm ring-2 ring-white/10">
+                      <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm ring-2 ring-white/10">
                         {research.author?.charAt(0) || "R"}
                       </div>
                     )}
@@ -193,7 +193,7 @@ export const ViewAllResearches = () => {
                     href={research.pdf_url || research.pdf_link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-indigo-600 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-white group-hover:scale-[1.02]"
+                    className="flex-1 inline-flex items-center justify-center gap-2  border border-white/30 bg-emerald-600 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-white group-hover:scale-[1.02]"
                   >
                     <svg
                       className="w-4 h-4"
@@ -216,14 +216,14 @@ export const ViewAllResearches = () => {
                         <button
                           type="button"
                           onClick={() => openEdit(research)}
-                          className="inline-flex items-center w-full justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/10"
+                          className="inline-flex items-center w-full justify-center gap-2  border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white/80 transition hover:border-white/40 hover:bg-white/10"
                         >
                           Update
                         </button>
                         <button
                           type="button"
                           onClick={() => setDeleteModal(research.id)}
-                          className="inline-flex items-center justify-center rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
+                          className="inline-flex items-center justify-center border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300 transition hover:bg-red-500/20"
                         >
                           <GoTrash className="w-4 h-4" />
                         </button>
@@ -248,7 +248,7 @@ export const ViewAllResearches = () => {
             </p>
 
             {actionError && (
-              <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+              <div className="mb-4  border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
                 {actionError}
               </div>
             )}
@@ -263,7 +263,7 @@ export const ViewAllResearches = () => {
                   onChange={(e) =>
                     setEditForm({ ...editForm, title: e.target.value })
                   }
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-purple-500/50 focus:outline-none"
+                  className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
                   required
                 />
               </div>
@@ -277,7 +277,7 @@ export const ViewAllResearches = () => {
                     setEditForm({ ...editForm, summary: e.target.value })
                   }
                   rows={5}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-purple-500/50 focus:outline-none"
+                  className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
                   required
                 />
               </div>
@@ -290,7 +290,7 @@ export const ViewAllResearches = () => {
                   onChange={(e) =>
                     setEditForm({ ...editForm, pdf_link: e.target.value })
                   }
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-purple-500/50 focus:outline-none"
+                  className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
                   placeholder="https://example.com/research.pdf"
                 />
               </div>
@@ -299,14 +299,14 @@ export const ViewAllResearches = () => {
                   type="button"
                   onClick={() => setEditing(null)}
                   disabled={saving}
-                  className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
+                  className="flex-1  border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex-1 rounded-lg bg-purple-600 px-4 py-2 text-white hover:bg-purple-500 transition disabled:opacity-50"
+                  className="flex-1 bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-500 transition disabled:opacity-50"
                 >
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
@@ -318,7 +318,7 @@ export const ViewAllResearches = () => {
 
       {deleteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#0A0710] border border-white/10 rounded-2xl p-6 max-w-md w-full mx-4">
+          <div className="bg-[#0A0710] border border-white/10  p-6 max-w-md w-full mx-4">
             <h3 className="text-xl font-bold text-white mb-3">
               Delete Research?
             </h3>
@@ -327,7 +327,7 @@ export const ViewAllResearches = () => {
               be undone.
             </p>
             {actionError && (
-              <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+              <div className="mb-4 border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
                 {actionError}
               </div>
             )}
@@ -335,14 +335,14 @@ export const ViewAllResearches = () => {
               <button
                 onClick={() => setDeleteModal(null)}
                 disabled={deleting}
-                className="flex-1 rounded-lg border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
+                className="flex-1  border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDelete(deleteModal)}
                 disabled={deleting}
-                className="flex-1 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-500 transition disabled:opacity-50"
+                className="flex-1  bg-red-600 px-4 py-2 text-white hover:bg-red-500 transition disabled:opacity-50"
               >
                 {deleting ? "Deleting..." : "Delete"}
               </button>

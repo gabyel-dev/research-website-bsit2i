@@ -97,7 +97,7 @@ export const Upload = () => {
                   setFormData({ ...formData, title: e.target.value })
                 }
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none"
+                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
                 placeholder="ex. The Impact of AI on Modern Research"
               />
             </div>
@@ -128,7 +128,7 @@ export const Upload = () => {
                 }}
                 required
                 rows={5}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none resize-none"
+                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none resize-none"
                 placeholder="Describe your research (max 100 words)"
               />
               <p className="mt-1 text-xs text-mist/50">
@@ -142,7 +142,7 @@ export const Upload = () => {
               </p>
             </div>
 
-            <div>
+            <div className="">
               <label className="block text-sm font-medium text-white mb-2">
                 PDF File
               </label>
@@ -150,7 +150,7 @@ export const Upload = () => {
                 type="file"
                 accept=".pdf"
                 onChange={(e) => setPdfFile(e.target.files?.[0] || null)}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-purple-500/20 file:text-purple-400 hover:file:bg-purple-500/30"
+                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/50 border-dashed text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-emerald-500/20 file:text-emerald-400 hover:file:bg-emerald-500/30"
               />
             </div>
 
@@ -172,18 +172,25 @@ export const Upload = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, pdfLink: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-purple-500/50 focus:outline-none"
+                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
                 placeholder="https://example.com/research.pdf"
               />
             </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 rounded-lg bg-purple-600 text-white font-medium hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {loading ? "Uploading..." : "Upload Research"}
-            </button>
+            <div className="w-full flex items-start justify-start gap-2">
+              <Link
+                to={"/"}
+                className="w-fit px-3 py-3 bg-transparent border border-white/20 text-white font-medium hover:bg-transparent hover:text-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                back
+              </Link>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-fit px-5 py-3 bg-emerald-600 text-white font-medium hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {loading ? "Uploading..." : "Upload Research"}
+              </button>
+            </div>
           </form>
         </div>
       </main>
