@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, type Variants } from "framer-motion";
+import Loader from "../components/loader/loader.js";
 
 export const Upload = () => {
   const { user } = useAuth();
@@ -96,6 +97,7 @@ export const Upload = () => {
   return (
     <div className="min-h-screen bg-[#0A0710] text-mist">
       <TopNavViewAll />
+      {loading && <Loader />}
       <main className="pt-24 pb-20 px-6 md:px-16">
         <div className="max-w-3xl mx-auto">
           <Link to="/" className="hidden md:block items-center gap-3 mb-6">

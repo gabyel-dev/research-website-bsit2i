@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     // Check if user is already logged in
     const checkAuth = async () => {
       try {
+        setLoading(true);
         const response = await api.get(`/api/auth/me`);
         setUser(response.data.user);
       } catch (error) {

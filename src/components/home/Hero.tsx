@@ -85,7 +85,7 @@ export const Hero = () => {
     };
   }, []);
   return (
-    <section
+    <main
       id="hero"
       className=" relative w-full flex h-[100vh]  flex-col md:items-center justify-center overflow-hidden bg-[#0A0710]  md:text-center pb-10 "
     >
@@ -149,6 +149,6 @@ export const Hero = () => {
           </a>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
