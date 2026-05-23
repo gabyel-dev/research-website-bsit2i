@@ -25,9 +25,9 @@ const contributors = [
   {
     id: 4,
     name: "Lancz Arceo",
-    role: "Icon Provider",
+    role: "Tester",
     image: "/icon_provider.jpg",
-    bio: "Icon provider for the website.",
+    bio: "Tests and evaluates the website to ensure functionality, security, and a smooth user experience.",
     linkedin: "#",
     github: "#",
   },
