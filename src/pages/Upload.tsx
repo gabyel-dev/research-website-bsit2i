@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext.js";
 import { Footer } from "../components/layout/Footer.js";
 import { api } from "../services/research.service.js";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import ReCAPTCHA from "react-google-recaptcha";
 
 /* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
 
@@ -20,6 +21,10 @@ export const Upload = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<ReCAPTCHA | null>(null);
+
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,9 +33,14 @@ export const Upload = () => {
     setSuccess(false);
 
     try {
+      if (!captchaToken) {
+        throw new Error("Please verify the reCAPTCHA before uploading");
+      }
+
       const formDataToSend = new FormData();
       formDataToSend.append("title", formData.title);
       formDataToSend.append("summary", formData.summary);
+      formDataToSend.append("captcha_token", captchaToken);
 
       if (pdfFile) {
         formDataToSend.append("pdf", pdfFile);
@@ -52,6 +62,8 @@ export const Upload = () => {
       setSuccess(true);
       setFormData({ title: "", summary: "", pdfLink: "" });
       setPdfFile(null);
+      setCaptchaToken(null);
+      captchaRef.current?.reset();
     } catch (err: any) {
       toast.error(err.response?.data?.error || err.message);
       setError(err.response?.data?.error || err.message);
@@ -164,6 +176,27 @@ export const Upload = () => {
 
             <div>
               <label className="block text-sm font-medium text-white mb-2">
+                Verify you are human *
+              </label>
+              {recaptchaSiteKey ? (
+                <div className="bg-white/5 border border-white/10 rounded-lg p-3 inline-block">
+                  <ReCAPTCHA
+                    ref={captchaRef}
+                    sitekey={recaptchaSiteKey}
+                    onChange={(token: string) => setCaptchaToken(token)}
+                    onExpired={() => setCaptchaToken(null)}
+                  />
+                </div>
+              ) : (
+                <p className="text-xs text-red-400">
+                  Missing reCAPTCHA site key. Set VITE_RECAPTCHA_SITE_KEY in
+                  client .env.
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-white mb-2">
                 PDF Link
               </label>
               <input
@@ -185,7 +218,7 @@ export const Upload = () => {
               </Link>
               <button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !captchaToken || !recaptchaSiteKey}
                 className="w-fit px-5 py-3 bg-emerald-600 text-white font-medium hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? "Uploading..." : "Upload Research"}
