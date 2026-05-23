@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext.js";
 import { Footer } from "../components/layout/Footer.js";
 import { api } from "../services/research.service.js";
@@ -7,8 +7,6 @@ import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import ReCAPTCHA from "react-google-recaptcha";
-
-/* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
 
 export const Upload = () => {
   const { user } = useAuth();
@@ -26,13 +24,6 @@ export const Upload = () => {
 
   const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
 
-  useEffect(() => {
-    console.log("[Upload] reCAPTCHA site key loaded:", {
-      present: Boolean(recaptchaSiteKey),
-      length: recaptchaSiteKey?.length || 0,
-    });
-  }, [recaptchaSiteKey]);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -40,11 +31,6 @@ export const Upload = () => {
     setSuccess(false);
 
     try {
-      console.log("[Upload] Submit captcha token:", {
-        present: Boolean(captchaToken),
-        length: captchaToken?.length || 0,
-      });
-
       if (!captchaToken) {
         throw new Error("Please verify the reCAPTCHA before uploading");
       }
@@ -98,13 +84,13 @@ export const Upload = () => {
           <p className="text-mist/60 mb-10">Share your research</p>
 
           {success && (
-            <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
+            <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 text-green-400">
               Research uploaded successfully!
             </div>
           )}
 
           {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
+            <div className="mb-6 p-4  bg-red-500/10 border border-red-500/30 text-red-400">
               {error}
             </div>
           )}
@@ -121,7 +107,7 @@ export const Upload = () => {
                   setFormData({ ...formData, title: e.target.value })
                 }
                 required
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
+                className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
                 placeholder="ex. The Impact of AI on Modern Research"
               />
             </div>
@@ -134,7 +120,7 @@ export const Upload = () => {
                 type="text"
                 value={user?.name || user?.email || ""}
                 disabled
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-mist/60"
+                className="w-full px-4 py-3  bg-white/5 border border-white/10 text-mist/60"
               />
             </div>
 
@@ -152,7 +138,7 @@ export const Upload = () => {
                 }}
                 required
                 rows={5}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none resize-none"
+                className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none resize-none"
                 placeholder="Describe your research (max 100 words)"
               />
               <p className="mt-1 text-xs text-mist/50">
@@ -174,7 +160,7 @@ export const Upload = () => {
                 type="file"
                 accept=".pdf"
                 onChange={(e) => setPdfFile(e.target.files?.[0] || null)}
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/50 border-dashed text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-emerald-500/20 file:text-emerald-400 hover:file:bg-emerald-500/30"
+                className="w-full px-4 py-3  bg-white/5 border border-white/50 border-dashed text-white file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-emerald-500/20 file:text-emerald-400 hover:file:bg-emerald-500/30"
               />
             </div>
 
@@ -191,20 +177,14 @@ export const Upload = () => {
                 Verify you are human *
               </label>
               {recaptchaSiteKey ? (
-                <div className="bg-white/5 border border-white/10 rounded-lg p-3 inline-block">
-                  <ReCAPTCHA
-                    ref={captchaRef}
-                    sitekey={recaptchaSiteKey}
-                    onChange={(token: string | null) => {
-                      console.debug("[Upload] reCAPTCHA changed:", {
-                        present: Boolean(token),
-                        length: token?.length || 0,
-                      });
-                      setCaptchaToken(token);
-                    }}
-                    onExpired={() => setCaptchaToken(null)}
-                  />
-                </div>
+                <ReCAPTCHA
+                  ref={captchaRef}
+                  sitekey={recaptchaSiteKey}
+                  onChange={(token: string | null) => {
+                    setCaptchaToken(token);
+                  }}
+                  onExpired={() => setCaptchaToken(null)}
+                />
               ) : (
                 <p className="text-xs text-red-400">
                   Missing reCAPTCHA site key. Set VITE_RECAPTCHA_SITE_KEY in
@@ -223,7 +203,7 @@ export const Upload = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, pdfLink: e.target.value })
                 }
-                className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
+                className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
                 placeholder="https://example.com/research.pdf"
               />
             </div>
