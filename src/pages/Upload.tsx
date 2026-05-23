@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext.js";
 import { Footer } from "../components/layout/Footer.js";
 import { api } from "../services/research.service.js";
@@ -26,6 +26,13 @@ export const Upload = () => {
 
   const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
 
+  useEffect(() => {
+    console.log("[Upload] reCAPTCHA site key loaded:", {
+      present: Boolean(recaptchaSiteKey),
+      length: recaptchaSiteKey?.length || 0,
+    });
+  }, [recaptchaSiteKey]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -33,6 +40,11 @@ export const Upload = () => {
     setSuccess(false);
 
     try {
+      console.log("[Upload] Submit captcha token:", {
+        present: Boolean(captchaToken),
+        length: captchaToken?.length || 0,
+      });
+
       if (!captchaToken) {
         throw new Error("Please verify the reCAPTCHA before uploading");
       }
@@ -183,7 +195,13 @@ export const Upload = () => {
                   <ReCAPTCHA
                     ref={captchaRef}
                     sitekey={recaptchaSiteKey}
-                    onChange={(token: string | null) => setCaptchaToken(token)}
+                    onChange={(token: string | null) => {
+                      console.debug("[Upload] reCAPTCHA changed:", {
+                        present: Boolean(token),
+                        length: token?.length || 0,
+                      });
+                      setCaptchaToken(token);
+                    }}
                     onExpired={() => setCaptchaToken(null)}
                   />
                 </div>
