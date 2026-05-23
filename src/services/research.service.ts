@@ -1,7 +1,7 @@
 import axios from "axios";
 
 /* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
-const NODE_ENV: string = "producti";
+const NODE_ENV: string = "production";
 
 export const api = axios.create({
   baseURL: NODE_ENV === "production" ? "/" : "http://localhost:3000",
