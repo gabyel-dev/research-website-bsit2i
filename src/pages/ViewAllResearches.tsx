@@ -239,7 +239,7 @@ export const ViewAllResearches = () => {
                     </span>
                   </div>
 
-                  <p className="text-[10px] text-mist/70 leading-relaxed line-clamp-4 text-justify">
+                  <p className="text-[10px] text-mist/70 leading-relaxed break-all whitespace-break-spaces text-justify">
                     {research.summary}
                   </p>
                 </div>
