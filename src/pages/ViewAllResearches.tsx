@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 import { IoIosArrowBack } from "react-icons/io";
 import { GoTrash } from "react-icons/go";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 
 export const ViewAllResearches = () => {
   const { user } = useAuth();
@@ -25,6 +26,49 @@ export const ViewAllResearches = () => {
   const [saving, setSaving] = useState(false);
   const [deleteModal, setDeleteModal] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+
+  const headerVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const gridVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const modalOverlay: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, transition: { duration: 0.3 } },
+  };
+
+  const modalPanel: Variants = {
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    },
+    exit: { opacity: 0, y: 10, scale: 0.98, transition: { duration: 0.3 } },
+  };
 
   useEffect(() => {
     const fetchResearches = async () => {
@@ -136,17 +180,29 @@ export const ViewAllResearches = () => {
           <Link to="/" className="hidden md:block items-center gap-3 mb-6">
             <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
           </Link>
-          <h1 className="text-4xl font-bold text-white mb-3">
-            All Research Papers
-          </h1>
-          <p className="text-mist/60 mb-10">
-            Browse all published research from BSIT 2I Students
-          </p>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={headerVariants}
+          >
+            <h1 className="text-4xl font-bold text-white mb-3">
+              All Research Papers
+            </h1>
+            <p className="text-mist/60 mb-10">
+              Browse all published research from BSIT 2I Students
+            </p>
+          </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            initial="hidden"
+            animate="visible"
+            variants={gridVariants}
+          >
             {researches.map((research) => (
-              <article
+              <motion.article
                 key={research.id}
+                variants={cardVariants}
                 className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300"
               >
                 <div>
@@ -231,125 +287,147 @@ export const ViewAllResearches = () => {
                     </>
                   )}
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </main>
 
-      {editing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#0A0710] border border-white/10 rounded-2xl p-6 max-w-lg w-full mx-4">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Update Research
-            </h3>
-            <p className="text-sm text-mist/60 mb-6">
-              Edit your research details below.
-            </p>
+      <AnimatePresence>
+        {editing && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={modalOverlay}
+          >
+            <motion.div
+              className="bg-[#0A0710] border border-white/10 rounded-2xl p-6 max-w-lg w-full mx-4"
+              variants={modalPanel}
+            >
+              <h3 className="text-xl font-bold text-white mb-2">
+                Update Research
+              </h3>
+              <p className="text-sm text-mist/60 mb-6">
+                Edit your research details below.
+              </p>
 
-            {actionError && (
-              <div className="mb-4  border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                {actionError}
-              </div>
-            )}
+              {actionError && (
+                <div className="mb-4  border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  {actionError}
+                </div>
+              )}
 
-            <form onSubmit={handleUpdate} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Title
-                </label>
-                <input
-                  value={editForm.title}
-                  onChange={(e) =>
-                    setEditForm({ ...editForm, title: e.target.value })
-                  }
-                  className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Summary
-                </label>
-                <textarea
-                  value={editForm.summary}
-                  onChange={(e) =>
-                    setEditForm({ ...editForm, summary: e.target.value })
-                  }
-                  rows={5}
-                  className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  PDF Link (optional)
-                </label>
-                <input
-                  value={editForm.pdf_link}
-                  onChange={(e) =>
-                    setEditForm({ ...editForm, pdf_link: e.target.value })
-                  }
-                  className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
-                  placeholder="https://example.com/research.pdf"
-                />
-              </div>
-              <div className="flex gap-3 pt-2">
+              <form onSubmit={handleUpdate} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Title
+                  </label>
+                  <input
+                    value={editForm.title}
+                    onChange={(e) =>
+                      setEditForm({ ...editForm, title: e.target.value })
+                    }
+                    className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    Summary
+                  </label>
+                  <textarea
+                    value={editForm.summary}
+                    onChange={(e) =>
+                      setEditForm({ ...editForm, summary: e.target.value })
+                    }
+                    rows={5}
+                    className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-white mb-2">
+                    PDF Link (optional)
+                  </label>
+                  <input
+                    value={editForm.pdf_link}
+                    onChange={(e) =>
+                      setEditForm({ ...editForm, pdf_link: e.target.value })
+                    }
+                    className="w-full  border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-emerald-500/50 focus:outline-none"
+                    placeholder="https://example.com/research.pdf"
+                  />
+                </div>
+                <div className="flex gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setEditing(null)}
+                    disabled={saving}
+                    className="flex-1  border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="flex-1 bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-500 transition disabled:opacity-50"
+                  >
+                    {saving ? "Saving..." : "Save Changes"}
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {deleteModal && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={modalOverlay}
+          >
+            <motion.div
+              className="bg-[#0A0710] border border-white/10  p-6 max-w-md w-full mx-4"
+              variants={modalPanel}
+            >
+              <h3 className="text-xl font-bold text-white mb-3">
+                Delete Research?
+              </h3>
+              <p className="text-mist/70 mb-6">
+                Are you sure you want to delete this research? This action
+                cannot be undone.
+              </p>
+              {actionError && (
+                <div className="mb-4 border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+                  {actionError}
+                </div>
+              )}
+              <div className="flex gap-3">
                 <button
-                  type="button"
-                  onClick={() => setEditing(null)}
-                  disabled={saving}
+                  onClick={() => setDeleteModal(null)}
+                  disabled={deleting}
                   className="flex-1  border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
                 >
                   Cancel
                 </button>
                 <button
-                  type="submit"
-                  disabled={saving}
-                  className="flex-1 bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-500 transition disabled:opacity-50"
+                  onClick={() => handleDelete(deleteModal)}
+                  disabled={deleting}
+                  className="flex-1  bg-red-600 px-4 py-2 text-white hover:bg-red-500 transition disabled:opacity-50"
                 >
-                  {saving ? "Saving..." : "Save Changes"}
+                  {deleting ? "Deleting..." : "Delete"}
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {deleteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#0A0710] border border-white/10  p-6 max-w-md w-full mx-4">
-            <h3 className="text-xl font-bold text-white mb-3">
-              Delete Research?
-            </h3>
-            <p className="text-mist/70 mb-6">
-              Are you sure you want to delete this research? This action cannot
-              be undone.
-            </p>
-            {actionError && (
-              <div className="mb-4 border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-300">
-                {actionError}
-              </div>
-            )}
-            <div className="flex gap-3">
-              <button
-                onClick={() => setDeleteModal(null)}
-                disabled={deleting}
-                className="flex-1  border border-white/20 px-4 py-2 text-white hover:bg-white/5 transition disabled:opacity-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleDelete(deleteModal)}
-                disabled={deleting}
-                className="flex-1  bg-red-600 px-4 py-2 text-white hover:bg-red-500 transition disabled:opacity-50"
-              >
-                {deleting ? "Deleting..." : "Delete"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { TopNav } from "../components/layout/TopNav.js";
 import { Footer } from "../components/layout/Footer.js";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -10,6 +11,49 @@ export const MyResearches = () => {
   const [loading, setLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+
+  const headerVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const gridVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  const modalOverlay: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, transition: { duration: 0.3 } },
+  };
+
+  const modalPanel: Variants = {
+    hidden: { opacity: 0, y: 20, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    },
+    exit: { opacity: 0, y: 10, scale: 0.98, transition: { duration: 0.3 } },
+  };
 
   const fetchMyResearches = async () => {
     try {
@@ -58,13 +102,24 @@ export const MyResearches = () => {
       <TopNav />
       <main className="pt-24 pb-20 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-3">
-            My Research Papers
-          </h1>
-          <p className="text-mist/60 mb-10">Manage your published research</p>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={headerVariants}
+          >
+            <h1 className="text-4xl font-bold text-white mb-3">
+              My Research Papers
+            </h1>
+            <p className="text-mist/60 mb-10">Manage your published research</p>
+          </motion.div>
 
           {researches.length === 0 ? (
-            <div className="text-center py-20">
+            <motion.div
+              className="text-center py-20"
+              initial="hidden"
+              animate="visible"
+              variants={headerVariants}
+            >
               <p className="text-mist/60 mb-6">
                 You haven't uploaded any research yet.
               </p>
@@ -74,12 +129,18 @@ export const MyResearches = () => {
               >
                 Upload Research
               </a>
-            </div>
+            </motion.div>
           ) : (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <motion.div
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+              initial="hidden"
+              animate="visible"
+              variants={gridVariants}
+            >
               {researches.map((research) => (
-                <article
+                <motion.article
                   key={research.id}
+                  variants={cardVariants}
                   className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur"
                 >
                   <div>
@@ -145,43 +206,54 @@ export const MyResearches = () => {
                       </svg>
                     </button>
                   </div>
-                </article>
+                </motion.article>
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
       </main>
 
       {/* Delete Modal */}
-      {deleteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#0A0710] border border-white/10 rounded-2xl p-6 max-w-md w-full mx-4">
-            <h3 className="text-xl font-bold text-white mb-3">
-              Delete Research?
-            </h3>
-            <p className="text-mist/70 mb-6">
-              Are you sure you want to delete this research? This action cannot
-              be undone.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setDeleteModal(null)}
-                disabled={deleting}
-                className="flex-1 px-4 py-2 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all disabled:opacity-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleDelete(deleteModal)}
-                disabled={deleting}
-                className="flex-1 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-500 transition-all disabled:opacity-50"
-              >
-                {deleting ? "Deleting..." : "Delete"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {deleteModal && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={modalOverlay}
+          >
+            <motion.div
+              className="bg-[#0A0710] border border-white/10 rounded-2xl p-6 max-w-md w-full mx-4"
+              variants={modalPanel}
+            >
+              <h3 className="text-xl font-bold text-white mb-3">
+                Delete Research?
+              </h3>
+              <p className="text-mist/70 mb-6">
+                Are you sure you want to delete this research? This action
+                cannot be undone.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setDeleteModal(null)}
+                  disabled={deleting}
+                  className="flex-1 px-4 py-2 rounded-lg border border-white/20 text-white hover:bg-white/5 transition-all disabled:opacity-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleDelete(deleteModal)}
+                  disabled={deleting}
+                  className="flex-1 px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-500 transition-all disabled:opacity-50"
+                >
+                  {deleting ? "Deleting..." : "Delete"}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

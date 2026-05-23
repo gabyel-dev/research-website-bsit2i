@@ -7,6 +7,7 @@ import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import ReCAPTCHA from "react-google-recaptcha";
+import { motion, type Variants } from "framer-motion";
 
 export const Upload = () => {
   const { user } = useAuth();
@@ -23,6 +24,28 @@ export const Upload = () => {
   const captchaRef = useRef<ReCAPTCHA | null>(null);
 
   const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string;
+
+  const container: Variants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.55,
+        ease: [0.16, 1, 0.3, 1],
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,10 +101,17 @@ export const Upload = () => {
           <Link to="/" className="hidden md:block items-center gap-3 mb-6">
             <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
           </Link>
-          <h1 className="text-4xl font-bold text-white mb-3">
-            Upload Research
-          </h1>
-          <p className="text-mist/60 mb-10">Share your research</p>
+          <motion.div initial="hidden" animate="visible" variants={container}>
+            <motion.h1
+              className="text-4xl font-bold text-white mb-3"
+              variants={item}
+            >
+              Upload Research
+            </motion.h1>
+            <motion.p className="text-mist/60 mb-10" variants={item}>
+              Share your research
+            </motion.p>
+          </motion.div>
 
           {success && (
             <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 text-green-400">
@@ -95,8 +125,14 @@ export const Upload = () => {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
+          <motion.form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            initial="hidden"
+            animate="visible"
+            variants={container}
+          >
+            <motion.div variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
                 Title *
               </label>
@@ -110,9 +146,9 @@ export const Upload = () => {
                 className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
                 placeholder="ex. The Impact of AI on Modern Research"
               />
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
                 Author
               </label>
@@ -122,9 +158,9 @@ export const Upload = () => {
                 disabled
                 className="w-full px-4 py-3  bg-white/5 border border-white/10 text-mist/60"
               />
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
                 Summary * (Max 100 words)
               </label>
@@ -150,9 +186,9 @@ export const Upload = () => {
                 }{" "}
                 / 100 words
               </p>
-            </div>
+            </motion.div>
 
-            <div className="">
+            <motion.div className="" variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
                 PDF File
               </label>
@@ -162,17 +198,17 @@ export const Upload = () => {
                 onChange={(e) => setPdfFile(e.target.files?.[0] || null)}
                 className="w-full px-4 py-3  bg-white/5 border border-white/50 border-dashed text-white file:mr-4 file:py-2 file:px-4 file:border-0 file:bg-emerald-500/20 file:text-emerald-400 hover:file:bg-emerald-500/30"
               />
-            </div>
+            </motion.div>
 
-            <div className="flex items-center gap-4">
+            <motion.div className="flex items-center gap-4" variants={item}>
               <div className="flex-1 h-px bg-white/10"></div>
               <span className="text-xs text-mist/40 uppercase tracking-wider">
                 OR
               </span>
               <div className="flex-1 h-px bg-white/10"></div>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
                 Verify you are human *
               </label>
@@ -191,9 +227,9 @@ export const Upload = () => {
                   client .env.
                 </p>
               )}
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
                 PDF Link
               </label>
@@ -206,8 +242,11 @@ export const Upload = () => {
                 className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
                 placeholder="https://example.com/research.pdf"
               />
-            </div>
-            <div className="w-full flex items-start justify-start gap-2">
+            </motion.div>
+            <motion.div
+              className="w-full flex items-start justify-start gap-2"
+              variants={item}
+            >
               <Link
                 to={"/"}
                 className="w-fit px-3 py-3 bg-transparent border border-white/20 text-white font-medium hover:bg-transparent hover:text-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
@@ -221,8 +260,8 @@ export const Upload = () => {
               >
                 {loading ? "Uploading..." : "Upload Research"}
               </button>
-            </div>
-          </form>
+            </motion.div>
+          </motion.form>
         </div>
       </main>
       <Footer />

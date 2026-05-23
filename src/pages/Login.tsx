@@ -4,11 +4,21 @@ import { useAuth } from "../context/AuthContext.js";
 import { useState } from "react";
 import { TopNavLogin } from "../components/layout/TopNavLogin.js";
 import toast from "react-hot-toast";
+import { motion, type Variants } from "framer-motion";
 
 export const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
+  const fadeUp: Variants = {
+    hidden: { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
 
   return (
     <>
@@ -22,8 +32,13 @@ export const Login = () => {
             className="  bg-cover w-full h-full"
           />
         </div>
-        <div className="mx-auto flex max-w-lg flex-col items-center gap-6 px-6 py-24">
-          <div className="text-center">
+        <motion.div
+          className="mx-auto flex max-w-lg flex-col items-center gap-6 px-6 py-24"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+        >
+          <motion.div className="text-center" variants={fadeUp}>
             <p className="text-xs uppercase tracking-[0.28em] text-mist/60">
               BSIT Research Hub
             </p>
@@ -33,7 +48,7 @@ export const Login = () => {
             <p className="mt-3 text-sm text-mist/70">
               Use your Pateros Technological College email to continue.
             </p>
-          </div>
+          </motion.div>
 
           {error && (
             <div className="w-full rounded-lg bg-red-500/10 border border-red-500/30 p-4 text-red-400 text-sm">
@@ -41,7 +56,7 @@ export const Login = () => {
             </div>
           )}
 
-          <div className="rounded-2xl  p-6">
+          <motion.div className="rounded-2xl  p-6" variants={fadeUp}>
             <GoogleLogin
               onSuccess={async (credentialResponse) => {
                 try {
@@ -60,8 +75,8 @@ export const Login = () => {
               }}
               hosted_domain={`${import.meta.env.VITE_ALLOWED_EMAIL_DOMAIN}`}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </>
   );
