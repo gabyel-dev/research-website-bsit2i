@@ -116,9 +116,9 @@ export const TopNav = () => {
           ) : (
             <Link
               to="/login"
-              className="rounded-full border border-white/20 bg-transparent px-5 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-emerald-500 flex items-center gap-2"
+              className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-5 py-3 text-xs font-medium text-slate-900 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
             >
-              Log in →
+              Upload Research
             </Link>
           )}
         </div>

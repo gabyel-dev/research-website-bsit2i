@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { animate } from "animejs";
 
+import { IoIosCloudUpload } from "react-icons/io";
+
 export const Hero = () => {
   const gridRef = useRef<HTMLDivElement | null>(null);
   const glowRef = useRef<HTMLDivElement | null>(null);
@@ -88,10 +90,7 @@ export const Hero = () => {
       className=" relative w-full flex h-[100vh]  flex-col md:items-center justify-center overflow-hidden bg-[#0A0710]  md:text-center pb-10 "
     >
       {/* Abstract Animated Backgrounds */}
-      <div
-        ref={gridRef}
-        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.18)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]"
-      />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]" />
       <div className=" fixed md:absolute w-full h-[110vh] opacity-10 md:opacity-40">
         <img
           src="/bg.webp"
@@ -102,7 +101,7 @@ export const Hero = () => {
 
       <div
         ref={glowRef}
-        className="absolute hidden md:block left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/10 mix-blend-screen blur-[120px]"
+        className="absolute hidden md:block left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/20 mix-blend-screen blur-[120px]"
       />
       <div className="absolute left-[20%] hidden md:block top-[20%] h-[400px] w-[400px] rounded-full bg-emerald-600/20 mix-blend-screen blur-[100px]" />
       <div className="absolute right-[20%] hidden md:block top-[30%] h-[500px] w-[500px] rounded-full bg-green-500/10 mix-blend-screen blur-[120px]" />
@@ -136,32 +135,17 @@ export const Hero = () => {
           insights with our curated BSIT research repository.
         </p>
 
-        <div
-          ref={buttonRef}
-          className="mt-10  flex z-21 relative w-fit items-center gap-2 rounded-full border border-white/20 bg-transparent pl-4 pr-1 py-1 text-sm font-medium text-white transition hover:bg-white/5"
-        >
-          <div className=" ">
+        <div ref={buttonRef} className="mt-10 flex items-center gap-2">
+          <div className="    flex z-21 relative w-fit items-center gap-2 rounded-full border border-white/20 bg-transparent  px-5 py-3 text-sm font-medium text-white transition hover:bg-white/5">
             <a href="#articles" className="">
-              View Researches
+              View Articles
             </a>
           </div>
           <a
-            href="#articles"
-            className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-emerald-300 px-5 py-3 text-sm font-medium text-slate-900 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
+            href="/upload"
+            className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-600 px-5 py-3 text-sm font-medium text-slate-100 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
           >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m5 12 7-7 7 7"></path>
-              <path d="M12 19V5"></path>
-            </svg>
+            <IoIosCloudUpload className="text-lg" />
           </a>
         </div>
       </div>

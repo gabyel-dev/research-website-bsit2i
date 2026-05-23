@@ -1,5 +1,5 @@
 import { GoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.js";
 import { useState } from "react";
 import { TopNavLogin } from "../components/layout/TopNavLogin.js";
@@ -25,11 +25,11 @@ export const Login = () => {
       <TopNavLogin />
 
       <div className="min-h-screen flex flex-col items-center justify-center bg-black text-mist">
-        <div className=" fixed md:absolute w-full h-[100vh] opacity-10 md:opacity-10">
+        <div className=" -z-1 fixed md:absolute w-full h-[100vh] opacity-10 md:opacity-10">
           <img
             src="/bg.webp"
             alt="background image hero section"
-            className="  bg-cover w-full h-full"
+            className=" touch-none  bg-cover w-full h-full"
           />
         </div>
         <motion.div
@@ -40,12 +40,12 @@ export const Login = () => {
         >
           <motion.div className="text-center" variants={fadeUp}>
             <p className="text-xs uppercase tracking-[0.28em] text-mist/60">
-              BSIT Research Hub
+              BSIT 2i Research Hub
             </p>
             <h1 className="mt-4 text-3xl font-semibold text-white">
               Sign in to upload your research
             </h1>
-            <p className="mt-3 text-sm text-mist/70">
+            <p className="mt-3 text-xs text-mist/70">
               Use your Pateros Technological College email to continue.
             </p>
           </motion.div>
@@ -76,6 +76,12 @@ export const Login = () => {
               hosted_domain={`${import.meta.env.VITE_ALLOWED_EMAIL_DOMAIN}`}
             />
           </motion.div>
+          <Link
+            to="/"
+            className=" flex items-center text-sm  gap-3 mb-6 relative z-3"
+          >
+            back
+          </Link>
         </motion.div>
       </div>
     </>
