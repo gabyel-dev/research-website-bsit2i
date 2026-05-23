@@ -24,7 +24,7 @@ const contributors = [
   },
   {
     id: 4,
-    name: "Lancz Arceo",
+    name: "Lancz Cristofer Arceo",
     role: "Tester",
     image: "/icon_provider.jpg",
     bio: "Tests and evaluates the website to ensure functionality, security, and a smooth user experience.",
