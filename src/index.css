@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "Futura";
-  src: url("fonts/FuturaCyrillicDemi.woff") format("woff");
+  src: url("fonts/FuturaCyrillicDemi.woff") format("woff2");
 }
 
 .futura {

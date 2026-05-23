@@ -37,7 +37,7 @@ export const Contributors = () => {
   return (
     <section
       id="contributors"
-      className="mt-24 mx-auto w-full max-w-7xl px-6 md:px-16 pb-10"
+      className="mt-20 md:mt-24 mx-auto w-full max-w-7xl px-6 md:px-16 pb-10"
     >
       <div className="mb-12 text-center">
         <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-emerald-400/80 font-semibold">

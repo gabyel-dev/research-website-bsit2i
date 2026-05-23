@@ -83,7 +83,7 @@ export const ResearchersLoggedIn = () => {
   return (
     <section
       id="researchers"
-      className="mt-24 mx-auto w-full max-w-7xl px-6 md:px-16"
+      className="mt-20 md:24 mx-auto w-full max-w-7xl px-6 md:px-16"
     >
       <div className="mb-10">
         <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-emerald-400/80 font-semibold">
