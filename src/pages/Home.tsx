@@ -10,7 +10,7 @@ export const Home = () => {
   const sectionVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: 40,
+      y: 20,
       filter: "blur(8px)",
     },
     visible: {
