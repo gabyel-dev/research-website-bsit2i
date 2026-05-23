@@ -45,16 +45,16 @@ export const Hero = () => {
 
       <div
         ref={glowRef}
-        className="absolute left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/10 mix-blend-screen blur-[120px]"
+        className="absolute hidden md:block left-1/2 top-1/2 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/10 mix-blend-screen blur-[120px]"
       />
-      <div className="absolute left-[20%] top-[20%] h-[400px] w-[400px] rounded-full bg-emerald-600/20 mix-blend-screen blur-[100px]" />
-      <div className="absolute right-[20%] top-[30%] h-[500px] w-[500px] rounded-full bg-green-500/10 mix-blend-screen blur-[120px]" />
+      <div className="absolute left-[20%] hidden md:block top-[20%] h-[400px] w-[400px] rounded-full bg-emerald-600/20 mix-blend-screen blur-[100px]" />
+      <div className="absolute right-[20%] hidden md:block top-[30%] h-[500px] w-[500px] rounded-full bg-green-500/10 mix-blend-screen blur-[120px]" />
 
       {/* Black Vignette overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A0710_80%)] opacity-90" />
+      <div className="pointer-events-none hidden md:block absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A0710_80%)] opacity-90" />
 
       {/* Bottom Gradient for smooth transition */}
-      <div className="pointer-events-none absolute hidden md:block bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0A0710] to-transparent z-2" />
+      <div className="pointer-events-none absolute  bottom-0 left-0 right-0 hidden md:block h-48 bg-gradient-to-t from-[#0A0710] to-transparent z-2" />
 
       {/* Content */}
       <div className="relative  flex max-w-4xl flex-col  md:items-center px-6 z-21 mt-20  ">

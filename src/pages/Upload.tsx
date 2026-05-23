@@ -183,7 +183,7 @@ export const Upload = () => {
                   <ReCAPTCHA
                     ref={captchaRef}
                     sitekey={recaptchaSiteKey}
-                    onChange={(token: string) => setCaptchaToken(token)}
+                    onChange={(token: string | null) => setCaptchaToken(token)}
                     onExpired={() => setCaptchaToken(null)}
                   />
                 </div>
