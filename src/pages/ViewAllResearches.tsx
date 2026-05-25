@@ -10,6 +10,15 @@ import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 import { IoIosArrowBack } from "react-icons/io";
 import { GoTrash } from "react-icons/go";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+type Researcher = {
+  id: string;
+  full_name: string;
+  profile_image_url?: string;
+};
 
 export const ViewAllResearches = () => {
   const { user } = useAuth();
@@ -26,6 +35,18 @@ export const ViewAllResearches = () => {
   const [saving, setSaving] = useState(false);
   const [deleteModal, setDeleteModal] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
+
+  const totalResearches = researches.length;
+  const [researchers, setResearchers] = useState<Researcher[]>([]);
+
+  useEffect(() => {
+    const fetchResearchers = async () => {
+      const response = await axios.get(`${API_URL}/api/users`);
+      setResearchers(response.data);
+    };
+
+    fetchResearchers();
+  }, []);
 
   const headerVariants: Variants = {
     hidden: { opacity: 0, y: 16 },
@@ -191,6 +212,21 @@ export const ViewAllResearches = () => {
             <p className="text-mist/60 mb-10">
               Browse all published research from BSIT 2I Students
             </p>
+            <div className="flex flex-wrap w-full justify-end h-full mb-10">
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3">
+                <span className="text-lg font-semibold text-white">
+                  {totalResearches}
+                </span>
+              </div>
+              <span className="h-full  absolute -translate-x-10 translate-y-2.5 text-emerald-500   text-2xl">
+                <p>/</p>
+              </span>
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3">
+                <span className="text-lg font-semibold text-white">
+                  {researchers.length}
+                </span>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -303,7 +339,7 @@ export const ViewAllResearches = () => {
             variants={modalOverlay}
           >
             <motion.div
-              className="bg-[#0A0710] border border-white/10 rounded-2xl p-6 max-w-lg w-full mx-4"
+              className="bg-[#0A0710] border border-white/10  p-6 max-w-lg w-full mx-4"
               variants={modalPanel}
             >
               <h3 className="text-xl font-bold text-white mb-2">
@@ -374,7 +410,7 @@ export const ViewAllResearches = () => {
                     disabled={saving}
                     className="flex-1 bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-500 transition disabled:opacity-50"
                   >
-                    {saving ? "Saving..." : "Save Changes"}
+                    {saving ? "Saving..." : "Save"}
                   </button>
                 </div>
               </form>
