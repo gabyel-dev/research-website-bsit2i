@@ -1,11 +1,12 @@
 const contributors = [
   {
     id: 1,
-    name: "Gabriel S. Guban",
-    role: "Lead Developer",
-    image: "/web_dev.avif",
-    bio: "develops and maintains the research platform, ensuring a seamless user experience",
+    name: "Janmark Celmar",
+    role: "UI Specialist",
+    image: "/ui_specialist.avif",
+    bio: "Designs intuitive interfaces and user experiences",
   },
+
   {
     id: 2,
     name: "John Patrick Pestada",
@@ -15,21 +16,25 @@ const contributors = [
   },
   {
     id: 3,
-    name: "Janmark Celmar",
-    role: "UI Specialist",
-    image: "/ui_specialist.avif",
-    bio: "Designs intuitive interfaces and user experiences",
-    linkedin: "#",
-    github: "#",
+    name: "Gabriel S. Guban",
+    role: "Lead Developer",
+    image: "/web_dev.avif",
+    bio: "develops and maintains the research platform, ensuring a seamless user experience",
   },
+
   {
     id: 4,
+    name: "Manuel Ryan Atayde",
+    role: "Security Tester",
+    image: "/security_tester.avif",
+    bio: "Tests the websites security measures, identifying vulnerabilities and ensuring data protection.",
+  },
+  {
+    id: 5,
     name: "Lancz Cristofer Arceo",
-    role: "Tester",
-    image: "/icon_provider.avif",
-    bio: "Tests and evaluates the website to ensure functionality, security, and a smooth user experience.",
-    linkedin: "#",
-    github: "#",
+    role: "Frontend Tester",
+    image: "/frontend_tester.avif",
+    bio: "Tests and evaluates the website to ensure functionality and a smooth user experience.",
   },
 ];
 
@@ -55,7 +60,7 @@ export const Contributors = () => {
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {contributors.map((contributor) => (
           <div
             key={contributor.id}
