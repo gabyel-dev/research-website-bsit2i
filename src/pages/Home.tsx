@@ -1,8 +1,10 @@
 import { TopNav } from "../components/layout/TopNav.js";
 import { Hero } from "../components/home/Hero.js";
+
 import { ResearchArticles } from "../components/home/ResearchArticles.js";
 import { ResearchersLoggedIn } from "../components/home/ResearchersLoggedIn.js";
 import { Contributors } from "../components/home/Contributors.js";
+import { CallToAction } from "../components/home/CallToAction.js";
 import { Footer } from "../components/layout/Footer.js";
 import { motion, type Variants } from "framer-motion";
 
@@ -65,6 +67,16 @@ export const Home = () => {
           transition={{ delay: 0.3 }}
         >
           <Contributors />
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={sectionVariants}
+          transition={{ delay: 0.4 }}
+        >
+          <CallToAction />
         </motion.div>
       </main>
 

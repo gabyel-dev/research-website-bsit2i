@@ -60,7 +60,7 @@ export const Contributors = () => {
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {contributors.map((contributor) => (
           <div
             key={contributor.id}
@@ -81,7 +81,7 @@ export const Contributors = () => {
               <p className="text-sm text-emerald-400/80 font-semibold mb-2">
                 {contributor.role}
               </p>
-              <p className="text-xs text-mist/60 leading-relaxed mb-4">
+              <p className="text-[11px] text-mist/60 leading-relaxed mb-4">
                 {contributor.bio}
               </p>
             </div>
