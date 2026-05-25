@@ -218,9 +218,7 @@ export const ViewAllResearches = () => {
                   {totalResearches}
                 </span>
               </div>
-              <span className="h-full  absolute -translate-x-10 translate-y-2.5 text-emerald-500   text-2xl">
-                <p>/</p>
-              </span>
+
               <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3">
                 <span className="text-lg font-semibold text-white">
                   {researchers.length}
