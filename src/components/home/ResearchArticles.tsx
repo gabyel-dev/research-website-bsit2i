@@ -100,7 +100,7 @@ export const ResearchArticles = () => {
         </div>
         <a
           href="/researches"
-          className="hidden md:flex items-center gap-2 border border-white/20 bg-white/5 px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-white/70 hover:bg-white/10 hover:border-white/30 transition-all"
+          className="hidden active:scale-95 md:flex items-center gap-2 border border-white/20 bg-white/5 px-5 py-2.5 text-xs uppercase tracking-[0.2em] text-white/70 hover:bg-white/10 hover:border-white/30 transition-all"
         >
           View All
           <svg
@@ -184,7 +184,7 @@ export const ResearchArticles = () => {
               </a>
               <a
                 href="/researches"
-                className="px-4 py-3 border border-white/30 bg-white/5 text-white/80 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all"
+                className="px-4 active:scale-95 py-3 border border-white/30 bg-white/5 text-white/80 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all"
                 title="View All"
               >
                 <svg

@@ -136,14 +136,14 @@ export const Hero = () => {
         </p>
 
         <div ref={buttonRef} className="mt-10 flex items-center gap-2">
-          <div className="    flex z-21 relative w-fit items-center gap-2 rounded-full border border-white/20 bg-transparent  px-5 py-3 text-sm font-medium text-white transition hover:bg-white/5">
+          <div className=" active:scale-95   flex z-21 relative w-fit items-center gap-2 rounded-full border border-white/20 bg-transparent  px-5 py-3 text-sm font-medium text-white transition hover:bg-white/5">
             <a href="#articles" className="">
               View Articles
             </a>
           </div>
           <a
             href="/upload"
-            className="flex w-fit items-center gap-2 rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-600 px-5 py-3 text-sm font-medium text-slate-100 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
+            className="flex active:scale-95 w-fit items-center gap-2 rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-600 px-5 py-3 text-sm font-medium text-slate-100 transition hover:opacity-90 shadow-[0_0_20px_rgba(59,130,246,0.3)] z-21 relative"
           >
             <IoIosCloudUpload className="text-lg" />
           </a>

@@ -251,14 +251,14 @@ export const Upload = () => {
             >
               <Link
                 to={"/"}
-                className="w-fit px-3 py-3 bg-transparent border border-white/20 text-white font-medium hover:bg-transparent hover:text-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-fit active:scale-95 px-3 py-3 bg-transparent border border-white/20 text-white font-medium hover:bg-transparent hover:text-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 back
               </Link>
               <button
                 type="submit"
                 disabled={loading || !captchaToken || !recaptchaSiteKey}
-                className="w-fit px-5 py-3 bg-emerald-600 text-white font-medium hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-fit active:scale-95 px-5 py-3 bg-emerald-600 text-white font-medium hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? "Uploading..." : "Upload Research"}
               </button>
