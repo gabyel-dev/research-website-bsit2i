@@ -14,6 +14,7 @@ import { AnimatePresence, motion, type Variants } from "framer-motion";
 export const ViewAllResearches = () => {
   const { user } = useAuth();
   const location = useLocation();
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [researches, setResearches] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState("");
@@ -38,6 +39,17 @@ export const ViewAllResearches = () => {
   }, [location.search]);
 
   useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 360);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     if (!highlightId || researches.length === 0) return;
 
     const target = document.getElementById(`research-${highlightId}`);
@@ -48,7 +60,7 @@ export const ViewAllResearches = () => {
 
     const timer = window.setTimeout(() => {
       setHighlightedId((current) => (current === highlightId ? null : current));
-    }, 2400);
+    }, 10000);
 
     return () => window.clearTimeout(timer);
   }, [highlightId, researches]);
@@ -196,6 +208,10 @@ export const ViewAllResearches = () => {
     }
   };
 
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#0A0710] text-mist">
@@ -236,7 +252,7 @@ export const ViewAllResearches = () => {
       <TopNavViewAll />
       <main className=" pb-20 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <Link to="/" className="hidden md:block items-center gap-3 mb-6">
+          <Link to="/" className=" hidden md:block items-center gap-3 mb-6">
             <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
           </Link>
           <motion.div
@@ -299,7 +315,7 @@ export const ViewAllResearches = () => {
                 key={research.id}
                 id={`research-${research.id}`}
                 variants={cardVariants}
-                className={`group flex h-full flex-col justify-between bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur transition-all duration-300 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 ${highlightedId === research.id ? "research-highlight" : ""}`}
+                className={`group flex h-full flex-col justify-between bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur transition-all duration-400 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 ${highlightedId === research.id ? "research-highlight" : ""}`}
               >
                 <div>
                   <h3 className="text-xl font-bold text-emerald-300 transition-colors leading-snug mb-4">
@@ -528,6 +544,26 @@ export const ViewAllResearches = () => {
       </AnimatePresence>
 
       <Footer />
+      {showScrollTop && (
+        <button
+          type="button"
+          onClick={handleScrollTop}
+          aria-label="Scroll to top"
+          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/80 shadow-lg backdrop-blur transition hover:border-white/40 hover:bg-white/20"
+        >
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m6 15 6-6 6 6" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

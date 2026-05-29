@@ -24,6 +24,11 @@ export const researchApi = {
     return response.data;
   },
 
+  async getByAuthorId(authorId: string) {
+    const response = await api.get(`/api/researches/author/${authorId}`);
+    return response.data;
+  },
+
   async update(
     id: string,
     payload: { title: string; summary: string; pdf_link?: string },
