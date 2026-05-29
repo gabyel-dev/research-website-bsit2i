@@ -60,15 +60,31 @@ export const ViewAllResearches = () => {
     return researches.filter((research) => {
       const title = (research.title || "").toLowerCase();
       const author = (research.author || "").toLowerCase();
-      const summary = (research.summary || "").toLowerCase();
 
-      return (
-        title.includes(query) ||
-        author.includes(query) ||
-        summary.includes(query)
-      );
+      return title.includes(query) || author.includes(query);
     });
   }, [researches, searchTerm]);
+
+  const highlightMatch = (text: string, query: string) => {
+    const normalizedQuery = query.trim();
+    if (!normalizedQuery) return text;
+
+    const escapedQuery = normalizedQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const parts = text.split(new RegExp(`(${escapedQuery})`, "gi"));
+
+    return parts.map((part, index) =>
+      part.toLowerCase() === normalizedQuery.toLowerCase() ? (
+        <span
+          key={`${part}-${index}`}
+          className=" bg-white mx-1 text-emerald-700"
+        >
+          {part}
+        </span>
+      ) : (
+        <span key={`${part}-${index}`}>{part}</span>
+      ),
+    );
+  };
 
   const headerVariants: Variants = {
     hidden: { opacity: 0, y: 16 },
@@ -252,7 +268,7 @@ export const ViewAllResearches = () => {
                   <input
                     value={searchTerm}
                     onChange={(event) => setSearchTerm(event.target.value)}
-                    placeholder="Search title, author, or summary..."
+                    placeholder="Search title or author..."
                     className="w-full bg-transparent text-sm text-white placeholder:text-mist/40 focus:outline-none"
                   />
                   {searchTerm && (
@@ -287,7 +303,7 @@ export const ViewAllResearches = () => {
               >
                 <div>
                   <h3 className="text-xl font-bold text-emerald-300 transition-colors leading-snug mb-4">
-                    {research.title}
+                    {highlightMatch(research.title || "", searchTerm)}
                   </h3>
 
                   <div className="flex items-center gap-3 mb-4">
@@ -304,7 +320,7 @@ export const ViewAllResearches = () => {
                     )}
                     <span className="text-xs text-mist/60 flex flex-col">
                       <p className="text-xs  tracking-[0.2em] text-mist/60">
-                        {research.author}
+                        {highlightMatch(research.author || "", searchTerm)}
                       </p>
                       <time className="text-[10px] text-mist/50">
                         {new Date(research.upload_date).toLocaleDateString(
@@ -319,9 +335,11 @@ export const ViewAllResearches = () => {
                     </span>
                   </div>
 
-                  <p className="text-[10px] text-mist/70 leading-relaxed break-all whitespace-break-spaces text-justify">
-                    {research.summary}
-                  </p>
+                  {!searchTerm && (
+                    <p className="text-[10px] text-mist/70 leading-relaxed break-all whitespace-break-spaces text-justify">
+                      {research.summary}
+                    </p>
+                  )}
                 </div>
 
                 <div className="mt-6 md:flex flex flex-col gap-2">
