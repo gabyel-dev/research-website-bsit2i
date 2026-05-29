@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { researchApi } from "../../services/research.service.js";
 
 import { ResearchCardSkeleton } from "../skeletons/ResearchCardSkeleton.js";
@@ -182,9 +183,10 @@ export const ResearchArticles = () => {
                 </svg>
                 Download PDF
               </a>
-              <a
-                href="/researches"
-                className="px-4 active:scale-95 py-3 border border-white/30 bg-white/5 text-white/80 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all"
+              <Link
+                id="highlight"
+                to={`/researches?highlight=${article.id}`}
+                className="px-4 py-3 border border-white/30 bg-white/5 text-white/80 transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10 active:scale-95"
                 title="View All"
               >
                 <svg
@@ -200,7 +202,7 @@ export const ResearchArticles = () => {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </a>
+              </Link>
             </div>
           </article>
         ))}

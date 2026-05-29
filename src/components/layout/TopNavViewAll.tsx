@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
 import { IoIosArrowBack } from "react-icons/io";
@@ -8,6 +8,8 @@ export const TopNavViewAll = () => {
   const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const handleLogoutConfirm = () => {
     logout();
@@ -15,9 +17,38 @@ export const TopNavViewAll = () => {
     setIsMobileMenuOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (isMobileMenuOpen) {
+        setIsNavVisible(true);
+        lastScrollY.current = currentScroll;
+        return;
+      }
+
+      if (currentScroll <= 10) {
+        setIsNavVisible(true);
+      } else if (currentScroll > lastScrollY.current + 8) {
+        setIsNavVisible(false);
+      } else if (currentScroll < lastScrollY.current - 8) {
+        setIsNavVisible(true);
+      }
+
+      lastScrollY.current = currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobileMenuOpen]);
+
   return (
     <>
-      <header className=" absolute inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none">
+      <header
+        className={`sticky inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-6 md:px-16 bg-black/20 md:bg-transparent backdrop-blur-sm md:border-none transition-transform duration-300 ease-out ${isNavVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
+      >
         <div className=" md:hidden gap-2">
           <Link to="/" className="flex items-center gap-3 text-2xl">
             <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />

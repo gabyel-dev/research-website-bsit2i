@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { TopNav } from "../components/layout/TopNav.js";
 import { Hero } from "../components/home/Hero.js";
 
@@ -9,6 +10,18 @@ import { Footer } from "../components/layout/Footer.js";
 import { motion, type Variants } from "framer-motion";
 
 export const Home = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 360);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const sectionVariants: Variants = {
     hidden: {
       opacity: 0,
@@ -24,6 +37,10 @@ export const Home = () => {
         ease: [0.22, 1, 0.36, 1],
       },
     },
+  };
+
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -81,6 +98,27 @@ export const Home = () => {
       </main>
 
       <Footer />
+
+      {showScrollTop && (
+        <button
+          type="button"
+          onClick={handleScrollTop}
+          aria-label="Scroll to top"
+          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/80 shadow-lg backdrop-blur transition hover:border-white/40 hover:bg-white/20"
+        >
+          <svg
+            className="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m6 15 6-6 6 6" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

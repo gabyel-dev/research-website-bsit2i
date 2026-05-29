@@ -7,37 +7,41 @@ import { MyResearches } from "./pages/MyResearches.js";
 import { NotFound } from "./pages/NotFound.js";
 import { ProtectedRoute } from "./routes/ProtectedRoute.js";
 import { PublicRoute } from "./routes/PublicRoute.js";
+import { ScrollToTop } from "./components/layout/ScrollToTop.js";
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/researches" element={<ViewAllResearches />} />
-      <Route
-        path="/login"
-        element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/upload"
-        element={
-          <ProtectedRoute>
-            <Upload />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/my-researches"
-        element={
-          <ProtectedRoute>
-            <MyResearches />
-          </ProtectedRoute>
-        }
-      />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/researches" element={<ViewAllResearches />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <ProtectedRoute>
+              <Upload />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-researches"
+          element={
+            <ProtectedRoute>
+              <MyResearches />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };

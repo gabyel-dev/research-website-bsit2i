@@ -1,31 +1,25 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { researchApi } from "../services/research.service.js";
 import { useAuth } from "../context/AuthContext.js";
 
 import { Footer } from "../components/layout/Footer.js";
 import { ResearchCardSkeleton } from "../components/skeletons/ResearchCardSkeleton.js";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { TopNavViewAll } from "../components/layout/TopNavViewAll.js";
 import { IoIosArrowBack } from "react-icons/io";
 import { GoTrash } from "react-icons/go";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
-import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
-type Researcher = {
-  id: string;
-  full_name: string;
-  profile_image_url?: string;
-};
 
 export const ViewAllResearches = () => {
   const { user } = useAuth();
+  const location = useLocation();
   const [researches, setResearches] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState("");
   const [actionError, setActionError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [editing, setEditing] = useState<any | null>(null);
   const [editForm, setEditForm] = useState({
     title: "",
@@ -37,16 +31,44 @@ export const ViewAllResearches = () => {
   const [deleting, setDeleting] = useState(false);
 
   const totalResearches = researches.length;
-  const [researchers, setResearchers] = useState<Researcher[]>([]);
+
+  const highlightId = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get("highlight");
+  }, [location.search]);
 
   useEffect(() => {
-    const fetchResearchers = async () => {
-      const response = await axios.get(`${API_URL}/api/users`);
-      setResearchers(response.data);
-    };
+    if (!highlightId || researches.length === 0) return;
 
-    fetchResearchers();
-  }, []);
+    const target = document.getElementById(`research-${highlightId}`);
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+    setHighlightedId(highlightId);
+
+    const timer = window.setTimeout(() => {
+      setHighlightedId((current) => (current === highlightId ? null : current));
+    }, 2400);
+
+    return () => window.clearTimeout(timer);
+  }, [highlightId, researches]);
+
+  const filteredResearches = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+    if (!query) return researches;
+
+    return researches.filter((research) => {
+      const title = (research.title || "").toLowerCase();
+      const author = (research.author || "").toLowerCase();
+      const summary = (research.summary || "").toLowerCase();
+
+      return (
+        title.includes(query) ||
+        author.includes(query) ||
+        summary.includes(query)
+      );
+    });
+  }, [researches, searchTerm]);
 
   const headerVariants: Variants = {
     hidden: { opacity: 0, y: 16 },
@@ -196,7 +218,7 @@ export const ViewAllResearches = () => {
   return (
     <div className="min-h-screen bg-[#0A0710] text-mist">
       <TopNavViewAll />
-      <main className="pt-24 pb-20 px-6 md:px-16">
+      <main className=" pb-20 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
           <Link to="/" className="hidden md:block items-center gap-3 mb-6">
             <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
@@ -212,16 +234,39 @@ export const ViewAllResearches = () => {
             <p className="text-mist/60 mb-10">
               Browse all published research from BSIT 2I Students
             </p>
-            <div className="flex flex-wrap w-full justify-end h-full mb-10">
-              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3">
-                <span className="text-lg font-semibold text-white">
-                  {totalResearches}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-3">
-                <span className="text-lg font-semibold text-white">
-                  {researchers.length}
+            <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div className="flex w-full flex-col gap-2 md:flex-row md:items-center">
+                <div className="flex w-full items-center gap-3 border border-white/10 bg-white/5 px-4 py-3 md:max-w-md">
+                  <svg
+                    className="h-4 w-4 text-mist/50"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.35-4.35" />
+                  </svg>
+                  <input
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                    placeholder="Search title, author, or summary..."
+                    className="w-full bg-transparent text-sm text-white placeholder:text-mist/40 focus:outline-none"
+                  />
+                  {searchTerm && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchTerm("")}
+                      className="text-xs text-mist/50 transition hover:text-white"
+                    >
+                      Clear
+                    </button>
+                  )}
+                </div>
+                <span className="text-xs text-mist/50">
+                  Showing {filteredResearches.length} of {totalResearches}
                 </span>
               </div>
             </div>
@@ -233,11 +278,12 @@ export const ViewAllResearches = () => {
             animate="visible"
             variants={gridVariants}
           >
-            {researches.map((research) => (
+            {filteredResearches.map((research) => (
               <motion.article
                 key={research.id}
+                id={`research-${research.id}`}
                 variants={cardVariants}
-                className="group flex h-full flex-col justify-between  bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300"
+                className={`group flex h-full flex-col justify-between bg-gradient-to-br from-white/5 to-white/[0.02] p-6 backdrop-blur transition-all duration-300 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/10 ${highlightedId === research.id ? "research-highlight" : ""}`}
               >
                 <div>
                   <h3 className="text-xl font-bold text-emerald-300 transition-colors leading-snug mb-4">

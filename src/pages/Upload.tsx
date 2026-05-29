@@ -98,7 +98,7 @@ export const Upload = () => {
     <div className="min-h-screen bg-[#0A0710] text-mist">
       <TopNavViewAll />
       {loading && <Loader />}
-      <main className="pt-24 pb-20 px-6 md:px-16">
+      <main className="pb-20 px-6 md:px-16">
         <div className="max-w-3xl mx-auto">
           <Link to="/" className="hidden md:block items-center gap-3 mb-6">
             <IoIosArrowBack className="text-mist/60 hover:text-mist cursor-pointer  transition-colors" />
@@ -212,10 +212,29 @@ export const Upload = () => {
 
             <motion.div variants={item}>
               <label className="block text-sm font-medium text-white mb-2">
+                PDF Link{" "}
+                <span className="text-xs text-mist/50">
+                  (optional if you uploaded a file)
+                </span>
+              </label>
+              <input
+                type="url"
+                value={formData.pdfLink}
+                onChange={(e) =>
+                  setFormData({ ...formData, pdfLink: e.target.value })
+                }
+                className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
+                placeholder="https://example.com/research.pdf"
+              />
+            </motion.div>
+
+            <motion.div variants={item}>
+              <label className="block text-sm font-medium text-white mb-2">
                 Verify you are human *
               </label>
               {recaptchaSiteKey ? (
                 <ReCAPTCHA
+                  className="transform scale-75 md:scale-100 origin-top-left"
                   ref={captchaRef}
                   sitekey={recaptchaSiteKey}
                   onChange={(token: string | null) => {
@@ -229,21 +248,6 @@ export const Upload = () => {
                   client .env.
                 </p>
               )}
-            </motion.div>
-
-            <motion.div variants={item}>
-              <label className="block text-sm font-medium text-white mb-2">
-                PDF Link
-              </label>
-              <input
-                type="url"
-                value={formData.pdfLink}
-                onChange={(e) =>
-                  setFormData({ ...formData, pdfLink: e.target.value })
-                }
-                className="w-full px-4 py-3  bg-white/5 border border-white/10 text-white focus:border-emerald-500/50 focus:outline-none"
-                placeholder="https://example.com/research.pdf"
-              />
             </motion.div>
             <motion.div
               className="w-full flex items-start justify-start gap-2"

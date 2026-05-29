@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.js";
 import { IoLogOut } from "react-icons/io5";
@@ -7,6 +7,8 @@ export const TopNav = () => {
   const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const handleLogoutConfirm = () => {
     logout();
@@ -18,10 +20,37 @@ export const TopNav = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (isMobileMenuOpen) {
+        setIsNavVisible(true);
+        lastScrollY.current = currentScroll;
+        return;
+      }
+
+      if (currentScroll <= 10) {
+        setIsNavVisible(true);
+      } else if (currentScroll > lastScrollY.current + 8) {
+        setIsNavVisible(false);
+      } else if (currentScroll < lastScrollY.current - 8) {
+        setIsNavVisible(true);
+      }
+
+      lastScrollY.current = currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <header
-        className={` fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-6 md:px-16 ${isMobileMenuOpen ? "bg-black" : "bg-black/20"} md:bg-transparent backdrop-blur-sm md:border-none`}
+        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-6 md:px-16 backdrop-blur-sm transition-transform duration-400 ease-out ${isMobileMenuOpen ? "bg-black" : "bg-black/20"} md:bg-transparent md:border-none ${isNavVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
       >
         <div className="flex gap-2">
           <button

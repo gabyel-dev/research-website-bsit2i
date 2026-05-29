@@ -1,4 +1,5 @@
 import { createContext, useContext, useMemo, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { api } from "../services/research.service";
 
 /* const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"; */
@@ -84,6 +85,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await api.post(`/api/auth/logout`);
       setUser(null);
+      toast.success("Logged out successfully");
     } catch (error) {
       console.error("Logout failed:", error);
     }
