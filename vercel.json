@@ -2,20 +2,20 @@
   "rewrites": [
     {
       "source": "/health/:path*",
-      "destination": "https://research-website-bsit2i-api-production.up.railway.app/health/:path*"
+      "destination": "https://research-website-bsit2i-api.onrender.com/health/:path*"
     },
     {
       "source": "/api/auth/:path*",
-      "destination": "https://research-website-bsit2i-api-production.up.railway.app/api/auth/:path*"
+      "destination": "https://research-website-bsit2i-api.onrender.com/api/auth/:path*"
     },
     {
       "source": "/api/researches/:path*",
-      "destination": "https://research-website-bsit2i-api-production.up.railway.app/api/researches/:path*"
+      "destination": "https://research-website-bsit2i-api.onrender.com/api/researches/:path*"
     },
 
     {
       "source": "/api/users/:path*",
-      "destination": "https://research-website-bsit2i-api-production.up.railway.app/api/users/:path*"
+      "destination": "https://research-website-bsit2i-api.onrender.com/api/users/:path*"
     },
 
     {
