@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { researchApi } from "../../services/research.service.js";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+import { api, researchApi } from "../../services/research.service.js";
 
 type Researcher = {
   id: string;
@@ -26,7 +23,7 @@ export const ResearchersLoggedIn = () => {
   useEffect(() => {
     const fetchResearchers = async () => {
       try {
-        const response = await axios.get(`${API_URL}/api/users`);
+        const response = await api.get(`/api/users`);
         setResearchers(response.data);
       } catch (err: any) {
         setError(err.message);
